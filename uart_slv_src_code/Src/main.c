@@ -1,9 +1,9 @@
 /*******************************************************************************
-* Filename              :   sys_init.c
-* Author                :   JWB
-* Origin Date           :   04/23/2012
+* Filename              :   main.c
+* Author                :   Tej Partap Singh
+* Origin Date           :   23.04.22 (yy.mm.dd)
 * Version               :   1.0.0
-* Target                :   PIC24FJ64GB004
+* Target                :   STM32F411RE
 *
 * Description:
 *
