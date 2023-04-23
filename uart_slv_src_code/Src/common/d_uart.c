@@ -1,30 +1,21 @@
-/*******************************************************************************
-* Filename              :   main.c
+/******************************************************************************
+* Filename              :   d_uart.c
 * Author                :   Tej Partap Singh
-* Origin Date           :   23.04.22 (yy.mm.dd)
+* Origin Date           :   Apr. 23, 2023
 * Version               :   1.0.0
 * Target                :   STM32F411RE
 *
 * Description:
-*	Slave device which perform following actions on separate threads using freeRTOS:
-*	-	Get commands from the host(PC).
-*		-	Turn on all channels of RGB LED
-*		-	Turn off all channels of RGB LED
 *
-*	-	Perform actions based on the command.
-*	-	Display currently running command number on LCD.
 */
 
 /******************************************************************************
 * Includes
 *******************************************************************************/
-#include "stm32f411xe.h"
+
 /******************************************************************************
 * Macros
 *******************************************************************************/
-/**
- *Doxygen tag for documenting variables and constants
- */
 
 /******************************************************************************
 * Typedefs
@@ -45,9 +36,7 @@
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
-int  main(void){
 
-}
 
 
 /*************** END OF FUNCTIONS ***************************************************************************/
