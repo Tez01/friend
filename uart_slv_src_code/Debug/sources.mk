@@ -21,7 +21,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-Src/common \
-Src \
-Startup \
+Core/Src/common \
+Core/Src \
+Core/Startup \
 
