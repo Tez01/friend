@@ -5,29 +5,23 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Src/main.c \
-../Src/syscalls.c \
-../Src/sysmem.c 
+../Src/common/d_uart.c 
 
 OBJS += \
-./Src/main.o \
-./Src/syscalls.o \
-./Src/sysmem.o 
+./Src/common/d_uart.o 
 
 C_DEPS += \
-./Src/main.d \
-./Src/syscalls.d \
-./Src/sysmem.d 
+./Src/common/d_uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Src/%.o Src/%.su: ../Src/%.c Src/subdir.mk
+Src/common/%.o Src/common/%.su: ../Src/common/%.c Src/common/subdir.mk
 	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F411RE -DSTM32 -DSTM32F4 -DSTM32F411RETx -c -I../Inc -I/home/tej/programming_projects/stm32/stm32_chip_headers -I/home/tej/programming_projects/stm32/stm32_chip_headers/Include -I"/home/tej/programming_projects/uart_slv/uart_slv_src_code/Src/common" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
-clean: clean-Src
+clean: clean-Src-2f-common
 
-clean-Src:
-	-$(RM) ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+clean-Src-2f-common:
+	-$(RM) ./Src/common/d_uart.d ./Src/common/d_uart.o ./Src/common/d_uart.su
 
-.PHONY: clean-Src
+.PHONY: clean-Src-2f-common
 
