@@ -22,21 +22,16 @@
 /******************************************************************************
 * Macros
 *******************************************************************************/
-/**
- *Doxygen tag for documenting variables and constants
- */
+
 
 /******************************************************************************
-* Typedefs
+* Type definitions (enums, structs, typedefs)
 *******************************************************************************/
 
 /******************************************************************************
 * Global Variables
 *******************************************************************************/
 
-/******************************************************************************
-* Static  Variables
-*******************************************************************************/
 
 /******************************************************************************
 * Function Prototypes
@@ -46,8 +41,34 @@
 * Function Definitions
 *******************************************************************************/
 int  main(void){
+	// Initialize everything in the application
+	a_init();
+
+	// Create a task for communication with pc
+
+	// create a task for processing the commands
+
+	// create a task to display current running command on LCD
+
+	// Start the scheduler
+
+	while(1){
+		// Code should never come here with FreeRTOS
+	}
 
 }
+
+
+void a_init(void){
+	/*	Input		:
+	 * 	Output		:
+	 * 	Desciption	:
+	 * 		Initialize all peripherals and drivers
+	 * 		used in the program.
+	 */
+}
+
+
 
 
 /*************** END OF FUNCTIONS ***************************************************************************/
