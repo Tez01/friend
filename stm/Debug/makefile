@@ -60,8 +60,8 @@ all: main-build
 main-build: stm.elf secondary-outputs
 
 # Tool invocations
-stm.elf stm.map: $(OBJS) $(USER_OBJS) /home/tej/programming_projects/gulaam/stm/STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "stm.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/tej/programming_projects/gulaam/stm/STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+stm.elf stm.map: $(OBJS) $(USER_OBJS) /home/tej/programming_projects/friend/stm/STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "stm.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/tej/programming_projects/friend/stm/STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

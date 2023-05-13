@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000198  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00000104  08000198  08000198  00010198  2**2
+  1 .text         000003a0  08000198  08000198  00010198  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000000  0800029c  080002a4  000102a4  2**0
+  2 .rodata       00000000  08000538  08000540  00010540  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .ARM.extab    00000000  0800029c  0800029c  000102a4  2**0
+  3 .ARM.extab    00000000  08000538  08000538  00010540  2**0
                   CONTENTS
-  4 .ARM          00000000  0800029c  0800029c  000102a4  2**0
+  4 .ARM          00000000  08000538  08000538  00010540  2**0
                   CONTENTS
-  5 .preinit_array 00000000  0800029c  080002a4  000102a4  2**0
+  5 .preinit_array 00000000  08000538  08000540  00010540  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  0800029c  0800029c  0001029c  2**2
+  6 .init_array   00000004  08000538  08000538  00010538  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  080002a0  080002a0  000102a0  2**2
+  7 .fini_array   00000004  0800053c  0800053c  0001053c  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000000  20000000  20000000  000102a4  2**0
+  8 .data         00000000  20000000  20000000  00010540  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000001c  20000000  080002a4  00020000  2**2
+  9 .bss          0000001c  20000000  08000540  00020000  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  2000001c  080002a4  0002001c  2**0
+ 10 ._user_heap_stack 00000604  2000001c  08000540  0002001c  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  000102a4  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  00010540  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000000a8  00000000  00000000  000102d4  2**0
+ 12 .debug_info   000005e3  00000000  00000000  00010570  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000005b  00000000  00000000  0001037c  2**0
+ 13 .debug_abbrev 00000250  00000000  00000000  00010b53  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000048  00000000  00000000  000103d8  2**3
+ 14 .debug_aranges 000000a8  00000000  00000000  00010da8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000030  00000000  00000000  00010420  2**3
+ 15 .debug_ranges 00000080  00000000  00000000  00010e50  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0000d0ea  00000000  00000000  00010450  2**0
+ 16 .debug_macro  0000dd0d  00000000  00000000  00010ed0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00000566  00000000  00000000  0001d53a  2**0
+ 17 .debug_line   00000bc5  00000000  00000000  0001ebdd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0004f1a9  00000000  00000000  0001daa0  2**0
+ 18 .debug_str    0004f639  00000000  00000000  0001f7a2  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  0006cc49  2**0
+ 19 .comment      00000050  00000000  00000000  0006eddb  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000005c  00000000  00000000  0006cc9c  2**2
+ 20 .debug_frame  00000184  00000000  00000000  0006ee2c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  80001ae:	bd10      	pop	{r4, pc}
  80001b0:	20000000 	.word	0x20000000
  80001b4:	00000000 	.word	0x00000000
- 80001b8:	08000284 	.word	0x08000284
+ 80001b8:	08000520 	.word	0x08000520
 
 080001bc <frame_dummy>:
  80001bc:	b508      	push	{r3, lr}
@@ -74,115 +74,587 @@ Disassembly of section .text:
  80001ca:	bd08      	pop	{r3, pc}
  80001cc:	00000000 	.word	0x00000000
  80001d0:	20000004 	.word	0x20000004
- 80001d4:	08000284 	.word	0x08000284
+ 80001d4:	08000520 	.word	0x08000520
 
-080001d8 <main>:
-*******************************************************************************/
+080001d8 <d_uart_init>:
+
 
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
-int  main(void){
- 80001d8:	b480      	push	{r7}
- 80001da:	af00      	add	r7, sp, #0
- 80001dc:	2300      	movs	r3, #0
+void d_uart_init(USART_TypeDef *usart){
+ 80001d8:	b580      	push	{r7, lr}
+ 80001da:	b082      	sub	sp, #8
+ 80001dc:	af00      	add	r7, sp, #0
+ 80001de:	6078      	str	r0, [r7, #4]
+ * 		Configures related gpios for usart communication
+ *		Initializes usart parameters for full duplex communication
+ */
+
+	// GPIO configuration
+	if(usart == USART1){
+ 80001e0:	687b      	ldr	r3, [r7, #4]
+ 80001e2:	4a20      	ldr	r2, [pc, #128]	; (8000264 <d_uart_init+0x8c>)
+ 80001e4:	4293      	cmp	r3, r2
+ 80001e6:	d107      	bne.n	80001f8 <d_uart_init+0x20>
+
+		// Configure GPIO
+		USART1_GPIO_Init();
+ 80001e8:	f000 f842 	bl	8000270 <USART1_GPIO_Init>
+		// Enable clock access to USART1
+		RCC->APB2ENR	|= APB2ENR_USART1EN;
+ 80001ec:	4b1e      	ldr	r3, [pc, #120]	; (8000268 <d_uart_init+0x90>)
+ 80001ee:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+ 80001f0:	4a1d      	ldr	r2, [pc, #116]	; (8000268 <d_uart_init+0x90>)
+ 80001f2:	f043 0310 	orr.w	r3, r3, #16
+ 80001f6:	6453      	str	r3, [r2, #68]	; 0x44
+	}
+
+	// GPIO configuration
+	if(usart == USART2){
+ 80001f8:	687b      	ldr	r3, [r7, #4]
+ 80001fa:	4a1c      	ldr	r2, [pc, #112]	; (800026c <d_uart_init+0x94>)
+ 80001fc:	4293      	cmp	r3, r2
+ 80001fe:	d107      	bne.n	8000210 <d_uart_init+0x38>
+
+		// Configure GPIO
+		USART2_GPIO_Init();
+ 8000200:	f000 f8aa 	bl	8000358 <USART2_GPIO_Init>
+		// Enable clock access to USART2
+		RCC->APB1ENR	|= APB1ENR_USART2EN;
+ 8000204:	4b18      	ldr	r3, [pc, #96]	; (8000268 <d_uart_init+0x90>)
+ 8000206:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+ 8000208:	4a17      	ldr	r2, [pc, #92]	; (8000268 <d_uart_init+0x90>)
+ 800020a:	f443 3300 	orr.w	r3, r3, #131072	; 0x20000
+ 800020e:	6413      	str	r3, [r2, #64]	; 0x40
+//	if(usart == USART6){
+//		USART6_GPIO_Init();
+//	}
+
+	// Enable the USART by writing the UE bit in USART_CR1 register to 1.
+	usart->CR1 |= CR1_UE;		//	1: USART enabled
+ 8000210:	687b      	ldr	r3, [r7, #4]
+ 8000212:	68db      	ldr	r3, [r3, #12]
+ 8000214:	f443 5200 	orr.w	r2, r3, #8192	; 0x2000
+ 8000218:	687b      	ldr	r3, [r7, #4]
+ 800021a:	60da      	str	r2, [r3, #12]
+
+	//	Program the M bit in USART_CR1 to define the word length.
+	usart->CR1 &= ~(CR1_M);		//	0: 1 Start bit, 8 Data bits, n Stop bit
+ 800021c:	687b      	ldr	r3, [r7, #4]
+ 800021e:	68db      	ldr	r3, [r3, #12]
+ 8000220:	f423 5280 	bic.w	r2, r3, #4096	; 0x1000
+ 8000224:	687b      	ldr	r3, [r7, #4]
+ 8000226:	60da      	str	r2, [r3, #12]
+
+	//	Program the number of stop bits in USART_CR2.
+	usart->CR2 &= ~(CR2_STOP);	//	00: 1 Stop bit
+ 8000228:	687b      	ldr	r3, [r7, #4]
+ 800022a:	691b      	ldr	r3, [r3, #16]
+ 800022c:	f423 5240 	bic.w	r2, r3, #12288	; 0x3000
+ 8000230:	687b      	ldr	r3, [r7, #4]
+ 8000232:	611a      	str	r2, [r3, #16]
+
+	// Select oversampling by programming OVER8 bit in CR1 register
+	usart->CR1 |= CR1_OVER8;	//	1: oversampling by 8
+ 8000234:	687b      	ldr	r3, [r7, #4]
+ 8000236:	68db      	ldr	r3, [r3, #12]
+ 8000238:	f443 4200 	orr.w	r2, r3, #32768	; 0x8000
+ 800023c:	687b      	ldr	r3, [r7, #4]
+ 800023e:	60da      	str	r2, [r3, #12]
+
+	//	 Select the desired baud rate using the USART_BRR register.
+	usart->BRR |= BRR_USARTDIV;
+ 8000240:	687b      	ldr	r3, [r7, #4]
+ 8000242:	689b      	ldr	r3, [r3, #8]
+ 8000244:	f443 7363 	orr.w	r3, r3, #908	; 0x38c
+ 8000248:	f043 0303 	orr.w	r3, r3, #3
+ 800024c:	687a      	ldr	r2, [r7, #4]
+ 800024e:	6093      	str	r3, [r2, #8]
+
+	//	Set the TE bit in USART_CR1 to send an idle frame as first transmission.
+	usart->CR1 |= CR1_TE;
+ 8000250:	687b      	ldr	r3, [r7, #4]
+ 8000252:	68db      	ldr	r3, [r3, #12]
+ 8000254:	f043 0208 	orr.w	r2, r3, #8
+ 8000258:	687b      	ldr	r3, [r7, #4]
+ 800025a:	60da      	str	r2, [r3, #12]
+	//	When TE is set, there is a 1 bit-time delay before the transmission starts
 
 }
- 80001de:	4618      	mov	r0, r3
- 80001e0:	46bd      	mov	sp, r7
- 80001e2:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80001e6:	4770      	bx	lr
+ 800025c:	bf00      	nop
+ 800025e:	3708      	adds	r7, #8
+ 8000260:	46bd      	mov	sp, r7
+ 8000262:	bd80      	pop	{r7, pc}
+ 8000264:	40011000 	.word	0x40011000
+ 8000268:	40023800 	.word	0x40023800
+ 800026c:	40004400 	.word	0x40004400
 
-080001e8 <Reset_Handler>:
- 80001e8:	480d      	ldr	r0, [pc, #52]	; (8000220 <LoopForever+0x2>)
- 80001ea:	4685      	mov	sp, r0
- 80001ec:	f3af 8000 	nop.w
- 80001f0:	480c      	ldr	r0, [pc, #48]	; (8000224 <LoopForever+0x6>)
- 80001f2:	490d      	ldr	r1, [pc, #52]	; (8000228 <LoopForever+0xa>)
- 80001f4:	4a0d      	ldr	r2, [pc, #52]	; (800022c <LoopForever+0xe>)
- 80001f6:	2300      	movs	r3, #0
- 80001f8:	e002      	b.n	8000200 <LoopCopyDataInit>
+08000270 <USART1_GPIO_Init>:
 
-080001fa <CopyDataInit>:
- 80001fa:	58d4      	ldr	r4, [r2, r3]
- 80001fc:	50c4      	str	r4, [r0, r3]
- 80001fe:	3304      	adds	r3, #4
+void USART1_GPIO_Init(void){
+ 8000270:	b580      	push	{r7, lr}
+ 8000272:	af00      	add	r7, sp, #0
+ * 	Description	:	Sets the gpio pins connected to USART1 for USART operation
+ * 					PA9 	-> 	USART1_TX
+ * 					PA10	->	USART1_RX
+ */
 
-08000200 <LoopCopyDataInit>:
- 8000200:	18c4      	adds	r4, r0, r3
- 8000202:	428c      	cmp	r4, r1
- 8000204:	d3f9      	bcc.n	80001fa <CopyDataInit>
- 8000206:	4a0a      	ldr	r2, [pc, #40]	; (8000230 <LoopForever+0x12>)
- 8000208:	4c0a      	ldr	r4, [pc, #40]	; (8000234 <LoopForever+0x16>)
- 800020a:	2300      	movs	r3, #0
- 800020c:	e001      	b.n	8000212 <LoopFillZerobss>
+	USART1_GPIO_TX_Init();
+ 8000274:	f000 f804 	bl	8000280 <USART1_GPIO_TX_Init>
 
-0800020e <FillZerobss>:
- 800020e:	6013      	str	r3, [r2, #0]
- 8000210:	3204      	adds	r2, #4
+	USART1_GPIO_RX_Init();
+ 8000278:	f000 f838 	bl	80002ec <USART1_GPIO_RX_Init>
 
-08000212 <LoopFillZerobss>:
- 8000212:	42a2      	cmp	r2, r4
- 8000214:	d3fb      	bcc.n	800020e <FillZerobss>
- 8000216:	f000 f811 	bl	800023c <__libc_init_array>
- 800021a:	f7ff ffdd 	bl	80001d8 <main>
 
-0800021e <LoopForever>:
- 800021e:	e7fe      	b.n	800021e <LoopForever>
- 8000220:	20020000 	.word	0x20020000
- 8000224:	20000000 	.word	0x20000000
- 8000228:	20000000 	.word	0x20000000
- 800022c:	080002a4 	.word	0x080002a4
- 8000230:	20000000 	.word	0x20000000
- 8000234:	2000001c 	.word	0x2000001c
 
-08000238 <ADC_IRQHandler>:
- 8000238:	e7fe      	b.n	8000238 <ADC_IRQHandler>
+}
+ 800027c:	bf00      	nop
+ 800027e:	bd80      	pop	{r7, pc}
+
+08000280 <USART1_GPIO_TX_Init>:
+
+
+void USART1_GPIO_TX_Init(void){
+ 8000280:	b480      	push	{r7}
+ 8000282:	af00      	add	r7, sp, #0
+ * 				-	Set alternate function type
+ *
+ */
+
+	// Enable clock access to GPIOA
+	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
+ 8000284:	4b17      	ldr	r3, [pc, #92]	; (80002e4 <USART1_GPIO_TX_Init+0x64>)
+ 8000286:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000288:	4a16      	ldr	r2, [pc, #88]	; (80002e4 <USART1_GPIO_TX_Init+0x64>)
+ 800028a:	f043 0301 	orr.w	r3, r3, #1
+ 800028e:	6313      	str	r3, [r2, #48]	; 0x30
+
+	// Set PA9  as alternate function
+	GPIOA->MODER &= ~MODER_MODER9_0;
+ 8000290:	4b15      	ldr	r3, [pc, #84]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 8000292:	681b      	ldr	r3, [r3, #0]
+ 8000294:	4a14      	ldr	r2, [pc, #80]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 8000296:	f423 2380 	bic.w	r3, r3, #262144	; 0x40000
+ 800029a:	6013      	str	r3, [r2, #0]
+	GPIOA->MODER |=	 MODER_MODER9_1;
+ 800029c:	4b12      	ldr	r3, [pc, #72]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 800029e:	681b      	ldr	r3, [r3, #0]
+ 80002a0:	4a11      	ldr	r2, [pc, #68]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002a2:	f443 2300 	orr.w	r3, r3, #524288	; 0x80000
+ 80002a6:	6013      	str	r3, [r2, #0]
+
+	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
+	(GPIOA->AFR)[1] |=	AFRH_9_0;
+ 80002a8:	4b0f      	ldr	r3, [pc, #60]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002aa:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80002ac:	4a0e      	ldr	r2, [pc, #56]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002ae:	f043 0310 	orr.w	r3, r3, #16
+ 80002b2:	6253      	str	r3, [r2, #36]	; 0x24
+	(GPIOA->AFR)[1] |=	AFRH_9_1;
+ 80002b4:	4b0c      	ldr	r3, [pc, #48]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002b6:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80002b8:	4a0b      	ldr	r2, [pc, #44]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002ba:	f043 0320 	orr.w	r3, r3, #32
+ 80002be:	6253      	str	r3, [r2, #36]	; 0x24
+	(GPIOA->AFR)[1] |=	AFRH_9_2;
+ 80002c0:	4b09      	ldr	r3, [pc, #36]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002c2:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80002c4:	4a08      	ldr	r2, [pc, #32]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002c6:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+ 80002ca:	6253      	str	r3, [r2, #36]	; 0x24
+	(GPIOA->AFR)[1] &=	~AFRH_9_3;
+ 80002cc:	4b06      	ldr	r3, [pc, #24]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002ce:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80002d0:	4a05      	ldr	r2, [pc, #20]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
+ 80002d2:	f023 0380 	bic.w	r3, r3, #128	; 0x80
+ 80002d6:	6253      	str	r3, [r2, #36]	; 0x24
+}
+ 80002d8:	bf00      	nop
+ 80002da:	46bd      	mov	sp, r7
+ 80002dc:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80002e0:	4770      	bx	lr
+ 80002e2:	bf00      	nop
+ 80002e4:	40023800 	.word	0x40023800
+ 80002e8:	40020000 	.word	0x40020000
+
+080002ec <USART1_GPIO_RX_Init>:
+
+
+void USART1_GPIO_RX_Init(void){
+ 80002ec:	b480      	push	{r7}
+ 80002ee:	af00      	add	r7, sp, #0
+ * 				-	Set alternate function type
+ *
+ */
+
+	// Enable clock access to GPIOA
+	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
+ 80002f0:	4b17      	ldr	r3, [pc, #92]	; (8000350 <USART1_GPIO_RX_Init+0x64>)
+ 80002f2:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80002f4:	4a16      	ldr	r2, [pc, #88]	; (8000350 <USART1_GPIO_RX_Init+0x64>)
+ 80002f6:	f043 0301 	orr.w	r3, r3, #1
+ 80002fa:	6313      	str	r3, [r2, #48]	; 0x30
+
+	//	Set PA10 mode as alternate function
+	GPIOA->MODER &= ~MODER_MODER10_0;
+ 80002fc:	4b15      	ldr	r3, [pc, #84]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 80002fe:	681b      	ldr	r3, [r3, #0]
+ 8000300:	4a14      	ldr	r2, [pc, #80]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 8000302:	f423 1380 	bic.w	r3, r3, #1048576	; 0x100000
+ 8000306:	6013      	str	r3, [r2, #0]
+	GPIOA->MODER |=	 MODER_MODER10_1;
+ 8000308:	4b12      	ldr	r3, [pc, #72]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 800030a:	681b      	ldr	r3, [r3, #0]
+ 800030c:	4a11      	ldr	r2, [pc, #68]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 800030e:	f443 1300 	orr.w	r3, r3, #2097152	; 0x200000
+ 8000312:	6013      	str	r3, [r2, #0]
+
+	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
+	(GPIOA->AFR)[1] |=	AFRH_10_0;
+ 8000314:	4b0f      	ldr	r3, [pc, #60]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 8000316:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 8000318:	4a0e      	ldr	r2, [pc, #56]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 800031a:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 800031e:	6253      	str	r3, [r2, #36]	; 0x24
+	(GPIOA->AFR)[1] |=	AFRH_10_1;
+ 8000320:	4b0c      	ldr	r3, [pc, #48]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 8000322:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 8000324:	4a0b      	ldr	r2, [pc, #44]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 8000326:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 800032a:	6253      	str	r3, [r2, #36]	; 0x24
+	(GPIOA->AFR)[1] |=	AFRH_10_2;
+ 800032c:	4b09      	ldr	r3, [pc, #36]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 800032e:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 8000330:	4a08      	ldr	r2, [pc, #32]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 8000332:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 8000336:	6253      	str	r3, [r2, #36]	; 0x24
+	(GPIOA->AFR)[1] &=	~AFRH_10_3;
+ 8000338:	4b06      	ldr	r3, [pc, #24]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 800033a:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 800033c:	4a05      	ldr	r2, [pc, #20]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
+ 800033e:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+ 8000342:	6253      	str	r3, [r2, #36]	; 0x24
+}
+ 8000344:	bf00      	nop
+ 8000346:	46bd      	mov	sp, r7
+ 8000348:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800034c:	4770      	bx	lr
+ 800034e:	bf00      	nop
+ 8000350:	40023800 	.word	0x40023800
+ 8000354:	40020000 	.word	0x40020000
+
+08000358 <USART2_GPIO_Init>:
+
+
+void USART2_GPIO_Init(void){
+ 8000358:	b580      	push	{r7, lr}
+ 800035a:	af00      	add	r7, sp, #0
+ * 	Description	:	Sets the gpio pins connected to USART2 for USART operation
+ * 					PA2 	-> 	USART2_TX
+ * 					PA3		->	USART2_RX
+ */
+
+	USART2_GPIO_TX_Init();
+ 800035c:	f000 f804 	bl	8000368 <USART2_GPIO_TX_Init>
+
+	USART2_GPIO_RX_Init();
+ 8000360:	f000 f838 	bl	80003d4 <USART2_GPIO_RX_Init>
+
+
+
+}
+ 8000364:	bf00      	nop
+ 8000366:	bd80      	pop	{r7, pc}
+
+08000368 <USART2_GPIO_TX_Init>:
+
+void USART2_GPIO_TX_Init(void){
+ 8000368:	b480      	push	{r7}
+ 800036a:	af00      	add	r7, sp, #0
+ * 				-	Set alternate function type
+ *
+ */
+
+	// Enable clock access to GPIOA
+	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
+ 800036c:	4b17      	ldr	r3, [pc, #92]	; (80003cc <USART2_GPIO_TX_Init+0x64>)
+ 800036e:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000370:	4a16      	ldr	r2, [pc, #88]	; (80003cc <USART2_GPIO_TX_Init+0x64>)
+ 8000372:	f043 0301 	orr.w	r3, r3, #1
+ 8000376:	6313      	str	r3, [r2, #48]	; 0x30
+
+	// Set PA2  as alternate function
+	GPIOA->MODER &= ~MODER_MODER2_0;
+ 8000378:	4b15      	ldr	r3, [pc, #84]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 800037a:	681b      	ldr	r3, [r3, #0]
+ 800037c:	4a14      	ldr	r2, [pc, #80]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 800037e:	f023 0310 	bic.w	r3, r3, #16
+ 8000382:	6013      	str	r3, [r2, #0]
+	GPIOA->MODER |=	 MODER_MODER2_1;
+ 8000384:	4b12      	ldr	r3, [pc, #72]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 8000386:	681b      	ldr	r3, [r3, #0]
+ 8000388:	4a11      	ldr	r2, [pc, #68]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 800038a:	f043 0320 	orr.w	r3, r3, #32
+ 800038e:	6013      	str	r3, [r2, #0]
+
+	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
+	(GPIOA->AFR)[0] |=	AFRL_2_0;
+ 8000390:	4b0f      	ldr	r3, [pc, #60]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 8000392:	6a1b      	ldr	r3, [r3, #32]
+ 8000394:	4a0e      	ldr	r2, [pc, #56]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 8000396:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 800039a:	6213      	str	r3, [r2, #32]
+	(GPIOA->AFR)[0] |=	AFRL_2_1;
+ 800039c:	4b0c      	ldr	r3, [pc, #48]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 800039e:	6a1b      	ldr	r3, [r3, #32]
+ 80003a0:	4a0b      	ldr	r2, [pc, #44]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 80003a2:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 80003a6:	6213      	str	r3, [r2, #32]
+	(GPIOA->AFR)[0] |=	AFRL_2_2;
+ 80003a8:	4b09      	ldr	r3, [pc, #36]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 80003aa:	6a1b      	ldr	r3, [r3, #32]
+ 80003ac:	4a08      	ldr	r2, [pc, #32]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 80003ae:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 80003b2:	6213      	str	r3, [r2, #32]
+	(GPIOA->AFR)[0] &=	~AFRL_2_3;
+ 80003b4:	4b06      	ldr	r3, [pc, #24]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 80003b6:	6a1b      	ldr	r3, [r3, #32]
+ 80003b8:	4a05      	ldr	r2, [pc, #20]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
+ 80003ba:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+ 80003be:	6213      	str	r3, [r2, #32]
+}
+ 80003c0:	bf00      	nop
+ 80003c2:	46bd      	mov	sp, r7
+ 80003c4:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80003c8:	4770      	bx	lr
+ 80003ca:	bf00      	nop
+ 80003cc:	40023800 	.word	0x40023800
+ 80003d0:	40020000 	.word	0x40020000
+
+080003d4 <USART2_GPIO_RX_Init>:
+
+
+void USART2_GPIO_RX_Init(void){
+ 80003d4:	b480      	push	{r7}
+ 80003d6:	af00      	add	r7, sp, #0
+ * 				-	Set alternate function type
+ *
+ */
+
+	// Enable clock access to GPIOA
+	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
+ 80003d8:	4b17      	ldr	r3, [pc, #92]	; (8000438 <USART2_GPIO_RX_Init+0x64>)
+ 80003da:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80003dc:	4a16      	ldr	r2, [pc, #88]	; (8000438 <USART2_GPIO_RX_Init+0x64>)
+ 80003de:	f043 0301 	orr.w	r3, r3, #1
+ 80003e2:	6313      	str	r3, [r2, #48]	; 0x30
+
+	//	Set PA3 mode as alternate function
+	GPIOA->MODER &= ~MODER_MODER3_0;
+ 80003e4:	4b15      	ldr	r3, [pc, #84]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 80003e6:	681b      	ldr	r3, [r3, #0]
+ 80003e8:	4a14      	ldr	r2, [pc, #80]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 80003ea:	f023 0340 	bic.w	r3, r3, #64	; 0x40
+ 80003ee:	6013      	str	r3, [r2, #0]
+	GPIOA->MODER |=	 MODER_MODER3_1;
+ 80003f0:	4b12      	ldr	r3, [pc, #72]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 80003f2:	681b      	ldr	r3, [r3, #0]
+ 80003f4:	4a11      	ldr	r2, [pc, #68]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 80003f6:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+ 80003fa:	6013      	str	r3, [r2, #0]
+
+	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
+	(GPIOA->AFR)[0] |=	AFRL_3_0;
+ 80003fc:	4b0f      	ldr	r3, [pc, #60]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 80003fe:	6a1b      	ldr	r3, [r3, #32]
+ 8000400:	4a0e      	ldr	r2, [pc, #56]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 8000402:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+ 8000406:	6213      	str	r3, [r2, #32]
+	(GPIOA->AFR)[0] |=	AFRL_3_1;
+ 8000408:	4b0c      	ldr	r3, [pc, #48]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 800040a:	6a1b      	ldr	r3, [r3, #32]
+ 800040c:	4a0b      	ldr	r2, [pc, #44]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 800040e:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+ 8000412:	6213      	str	r3, [r2, #32]
+	(GPIOA->AFR)[0] |=	AFRL_3_2;
+ 8000414:	4b09      	ldr	r3, [pc, #36]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 8000416:	6a1b      	ldr	r3, [r3, #32]
+ 8000418:	4a08      	ldr	r2, [pc, #32]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 800041a:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 800041e:	6213      	str	r3, [r2, #32]
+	(GPIOA->AFR)[0] &=	~AFRL_3_3;
+ 8000420:	4b06      	ldr	r3, [pc, #24]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 8000422:	6a1b      	ldr	r3, [r3, #32]
+ 8000424:	4a05      	ldr	r2, [pc, #20]	; (800043c <USART2_GPIO_RX_Init+0x68>)
+ 8000426:	f423 4300 	bic.w	r3, r3, #32768	; 0x8000
+ 800042a:	6213      	str	r3, [r2, #32]
+}
+ 800042c:	bf00      	nop
+ 800042e:	46bd      	mov	sp, r7
+ 8000430:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000434:	4770      	bx	lr
+ 8000436:	bf00      	nop
+ 8000438:	40023800 	.word	0x40023800
+ 800043c:	40020000 	.word	0x40020000
+
+08000440 <main>:
+*******************************************************************************/
+void a_init(void);
+/******************************************************************************
+* Function Definitions
+*******************************************************************************/
+int  main(void){
+ 8000440:	b580      	push	{r7, lr}
+ 8000442:	b082      	sub	sp, #8
+ 8000444:	af00      	add	r7, sp, #0
+	// Initialize everything in the application
+	a_init();
+ 8000446:	f000 f813 	bl	8000470 <a_init>
+
+	// create a task to display current running command on LCD
+
+	// Start the scheduler
+
+	uint32_t count = 49;
+ 800044a:	2331      	movs	r3, #49	; 0x31
+ 800044c:	603b      	str	r3, [r7, #0]
+	while(1){
+		// Code should never come here with FreeRTOS
+		USART2->DR = count;
+ 800044e:	4a07      	ldr	r2, [pc, #28]	; (800046c <main+0x2c>)
+ 8000450:	683b      	ldr	r3, [r7, #0]
+ 8000452:	6053      	str	r3, [r2, #4]
+		for(int i = 0; i < 3000; i++){
+ 8000454:	2300      	movs	r3, #0
+ 8000456:	607b      	str	r3, [r7, #4]
+ 8000458:	e002      	b.n	8000460 <main+0x20>
+ 800045a:	687b      	ldr	r3, [r7, #4]
+ 800045c:	3301      	adds	r3, #1
+ 800045e:	607b      	str	r3, [r7, #4]
+ 8000460:	687b      	ldr	r3, [r7, #4]
+ 8000462:	f640 32b7 	movw	r2, #2999	; 0xbb7
+ 8000466:	4293      	cmp	r3, r2
+ 8000468:	ddf7      	ble.n	800045a <main+0x1a>
+		USART2->DR = count;
+ 800046a:	e7f0      	b.n	800044e <main+0xe>
+ 800046c:	40004400 	.word	0x40004400
+
+08000470 <a_init>:
+	}
+
+}
+
+
+void a_init(void){
+ 8000470:	b580      	push	{r7, lr}
+ 8000472:	af00      	add	r7, sp, #0
+* 	Output		:	All peripherals initialized
+* 	Description	:
+*		Initializes the application variables and all peripherals used
+*/
+
+	d_uart_init(USART2);
+ 8000474:	4802      	ldr	r0, [pc, #8]	; (8000480 <a_init+0x10>)
+ 8000476:	f7ff feaf 	bl	80001d8 <d_uart_init>
+
+
+}
+ 800047a:	bf00      	nop
+ 800047c:	bd80      	pop	{r7, pc}
+ 800047e:	bf00      	nop
+ 8000480:	40004400 	.word	0x40004400
+
+08000484 <Reset_Handler>:
+ 8000484:	480d      	ldr	r0, [pc, #52]	; (80004bc <LoopForever+0x2>)
+ 8000486:	4685      	mov	sp, r0
+ 8000488:	f3af 8000 	nop.w
+ 800048c:	480c      	ldr	r0, [pc, #48]	; (80004c0 <LoopForever+0x6>)
+ 800048e:	490d      	ldr	r1, [pc, #52]	; (80004c4 <LoopForever+0xa>)
+ 8000490:	4a0d      	ldr	r2, [pc, #52]	; (80004c8 <LoopForever+0xe>)
+ 8000492:	2300      	movs	r3, #0
+ 8000494:	e002      	b.n	800049c <LoopCopyDataInit>
+
+08000496 <CopyDataInit>:
+ 8000496:	58d4      	ldr	r4, [r2, r3]
+ 8000498:	50c4      	str	r4, [r0, r3]
+ 800049a:	3304      	adds	r3, #4
+
+0800049c <LoopCopyDataInit>:
+ 800049c:	18c4      	adds	r4, r0, r3
+ 800049e:	428c      	cmp	r4, r1
+ 80004a0:	d3f9      	bcc.n	8000496 <CopyDataInit>
+ 80004a2:	4a0a      	ldr	r2, [pc, #40]	; (80004cc <LoopForever+0x12>)
+ 80004a4:	4c0a      	ldr	r4, [pc, #40]	; (80004d0 <LoopForever+0x16>)
+ 80004a6:	2300      	movs	r3, #0
+ 80004a8:	e001      	b.n	80004ae <LoopFillZerobss>
+
+080004aa <FillZerobss>:
+ 80004aa:	6013      	str	r3, [r2, #0]
+ 80004ac:	3204      	adds	r2, #4
+
+080004ae <LoopFillZerobss>:
+ 80004ae:	42a2      	cmp	r2, r4
+ 80004b0:	d3fb      	bcc.n	80004aa <FillZerobss>
+ 80004b2:	f000 f811 	bl	80004d8 <__libc_init_array>
+ 80004b6:	f7ff ffc3 	bl	8000440 <main>
+
+080004ba <LoopForever>:
+ 80004ba:	e7fe      	b.n	80004ba <LoopForever>
+ 80004bc:	20020000 	.word	0x20020000
+ 80004c0:	20000000 	.word	0x20000000
+ 80004c4:	20000000 	.word	0x20000000
+ 80004c8:	08000540 	.word	0x08000540
+ 80004cc:	20000000 	.word	0x20000000
+ 80004d0:	2000001c 	.word	0x2000001c
+
+080004d4 <ADC_IRQHandler>:
+ 80004d4:	e7fe      	b.n	80004d4 <ADC_IRQHandler>
 	...
 
-0800023c <__libc_init_array>:
- 800023c:	b570      	push	{r4, r5, r6, lr}
- 800023e:	4d0d      	ldr	r5, [pc, #52]	; (8000274 <__libc_init_array+0x38>)
- 8000240:	4c0d      	ldr	r4, [pc, #52]	; (8000278 <__libc_init_array+0x3c>)
- 8000242:	1b64      	subs	r4, r4, r5
- 8000244:	10a4      	asrs	r4, r4, #2
- 8000246:	2600      	movs	r6, #0
- 8000248:	42a6      	cmp	r6, r4
- 800024a:	d109      	bne.n	8000260 <__libc_init_array+0x24>
- 800024c:	4d0b      	ldr	r5, [pc, #44]	; (800027c <__libc_init_array+0x40>)
- 800024e:	4c0c      	ldr	r4, [pc, #48]	; (8000280 <__libc_init_array+0x44>)
- 8000250:	f000 f818 	bl	8000284 <_init>
- 8000254:	1b64      	subs	r4, r4, r5
- 8000256:	10a4      	asrs	r4, r4, #2
- 8000258:	2600      	movs	r6, #0
- 800025a:	42a6      	cmp	r6, r4
- 800025c:	d105      	bne.n	800026a <__libc_init_array+0x2e>
- 800025e:	bd70      	pop	{r4, r5, r6, pc}
- 8000260:	f855 3b04 	ldr.w	r3, [r5], #4
- 8000264:	4798      	blx	r3
- 8000266:	3601      	adds	r6, #1
- 8000268:	e7ee      	b.n	8000248 <__libc_init_array+0xc>
- 800026a:	f855 3b04 	ldr.w	r3, [r5], #4
- 800026e:	4798      	blx	r3
- 8000270:	3601      	adds	r6, #1
- 8000272:	e7f2      	b.n	800025a <__libc_init_array+0x1e>
- 8000274:	0800029c 	.word	0x0800029c
- 8000278:	0800029c 	.word	0x0800029c
- 800027c:	0800029c 	.word	0x0800029c
- 8000280:	080002a0 	.word	0x080002a0
+080004d8 <__libc_init_array>:
+ 80004d8:	b570      	push	{r4, r5, r6, lr}
+ 80004da:	4d0d      	ldr	r5, [pc, #52]	; (8000510 <__libc_init_array+0x38>)
+ 80004dc:	4c0d      	ldr	r4, [pc, #52]	; (8000514 <__libc_init_array+0x3c>)
+ 80004de:	1b64      	subs	r4, r4, r5
+ 80004e0:	10a4      	asrs	r4, r4, #2
+ 80004e2:	2600      	movs	r6, #0
+ 80004e4:	42a6      	cmp	r6, r4
+ 80004e6:	d109      	bne.n	80004fc <__libc_init_array+0x24>
+ 80004e8:	4d0b      	ldr	r5, [pc, #44]	; (8000518 <__libc_init_array+0x40>)
+ 80004ea:	4c0c      	ldr	r4, [pc, #48]	; (800051c <__libc_init_array+0x44>)
+ 80004ec:	f000 f818 	bl	8000520 <_init>
+ 80004f0:	1b64      	subs	r4, r4, r5
+ 80004f2:	10a4      	asrs	r4, r4, #2
+ 80004f4:	2600      	movs	r6, #0
+ 80004f6:	42a6      	cmp	r6, r4
+ 80004f8:	d105      	bne.n	8000506 <__libc_init_array+0x2e>
+ 80004fa:	bd70      	pop	{r4, r5, r6, pc}
+ 80004fc:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000500:	4798      	blx	r3
+ 8000502:	3601      	adds	r6, #1
+ 8000504:	e7ee      	b.n	80004e4 <__libc_init_array+0xc>
+ 8000506:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800050a:	4798      	blx	r3
+ 800050c:	3601      	adds	r6, #1
+ 800050e:	e7f2      	b.n	80004f6 <__libc_init_array+0x1e>
+ 8000510:	08000538 	.word	0x08000538
+ 8000514:	08000538 	.word	0x08000538
+ 8000518:	08000538 	.word	0x08000538
+ 800051c:	0800053c 	.word	0x0800053c
 
-08000284 <_init>:
- 8000284:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000286:	bf00      	nop
- 8000288:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800028a:	bc08      	pop	{r3}
- 800028c:	469e      	mov	lr, r3
- 800028e:	4770      	bx	lr
+08000520 <_init>:
+ 8000520:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000522:	bf00      	nop
+ 8000524:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000526:	bc08      	pop	{r3}
+ 8000528:	469e      	mov	lr, r3
+ 800052a:	4770      	bx	lr
 
-08000290 <_fini>:
- 8000290:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000292:	bf00      	nop
- 8000294:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000296:	bc08      	pop	{r3}
- 8000298:	469e      	mov	lr, r3
- 800029a:	4770      	bx	lr
+0800052c <_fini>:
+ 800052c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800052e:	bf00      	nop
+ 8000530:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000532:	bc08      	pop	{r3}
+ 8000534:	469e      	mov	lr, r3
+ 8000536:	4770      	bx	lr

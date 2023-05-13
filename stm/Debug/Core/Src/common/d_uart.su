@@ -1,0 +1,7 @@
+../Core/Src/common/d_uart.c:103:6:d_uart_init	16	static
+../Core/Src/common/d_uart.c:175:6:USART1_GPIO_Init	8	static
+../Core/Src/common/d_uart.c:192:6:USART1_GPIO_TX_Init	4	static
+../Core/Src/common/d_uart.c:217:6:USART1_GPIO_RX_Init	4	static
+../Core/Src/common/d_uart.c:242:6:USART2_GPIO_Init	8	static
+../Core/Src/common/d_uart.c:258:6:USART2_GPIO_TX_Init	4	static
+../Core/Src/common/d_uart.c:283:6:USART2_GPIO_RX_Init	4	static

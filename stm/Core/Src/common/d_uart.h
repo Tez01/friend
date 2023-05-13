@@ -30,5 +30,13 @@
 /******************************************************************************
 * Function Prototypes
 *******************************************************************************/
+void d_uart_init(USART_TypeDef *usart);	// Initialize usart driver for full duplex communication
 
+void USART1_GPIO_Init(void);	//	Sets the gpio pins connected to USART1 for USART operation
+void USART1_GPIO_TX_Init(void);
+void USART1_GPIO_RX_Init(void);
+
+void USART2_GPIO_Init(void);	//	Sets the gpio pins connected to USART2 for USART operation
+void USART2_GPIO_TX_Init(void);
+void USART2_GPIO_RX_Init(void);
 #endif /* COMMON_D_UART_H_ */

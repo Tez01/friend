@@ -18,7 +18,7 @@
 // Function template
 void a(void){
 /*	Input		:	(nothing)
- * 	Output		:	All peripherals initialized
+ * 	Output		:
  * 	Description	:
  *
  */
@@ -29,6 +29,8 @@ void a(void){
 * Includes
 *******************************************************************************/
 #include "stm32f411xe.h"
+
+#include "d_uart.h"
 /******************************************************************************
 * Macros
 *******************************************************************************/
@@ -46,7 +48,7 @@ void a(void){
 /******************************************************************************
 * Function Prototypes
 *******************************************************************************/
-
+void a_init(void);
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
@@ -62,8 +64,14 @@ int  main(void){
 
 	// Start the scheduler
 
+	uint32_t count = 49;
 	while(1){
 		// Code should never come here with FreeRTOS
+		USART2->DR = count;
+		for(int i = 0; i < 3000; i++){
+			;
+		}
+
 	}
 
 }
@@ -75,7 +83,8 @@ void a_init(void){
 * 	Description	:
 *		Initializes the application variables and all peripherals used
 */
-	d_uart_init(USART1);
+
+	d_uart_init(USART2);
 
 
 }
