@@ -167,8 +167,8 @@ void d_uart_init(USART_TypeDef *usart){
 	usart->BRR |= BRR_USARTDIV;
  8000240:	687b      	ldr	r3, [r7, #4]
  8000242:	689b      	ldr	r3, [r3, #8]
- 8000244:	f443 7363 	orr.w	r3, r3, #908	; 0x38c
- 8000248:	f043 0303 	orr.w	r3, r3, #3
+ 8000244:	f443 7389 	orr.w	r3, r3, #274	; 0x112
+ 8000248:	f043 0301 	orr.w	r3, r3, #1
  800024c:	687a      	ldr	r2, [r7, #4]
  800024e:	6093      	str	r3, [r2, #8]
 

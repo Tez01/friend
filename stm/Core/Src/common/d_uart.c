@@ -40,8 +40,12 @@
 #define CR1_M 			(1 << 12)
 #define	CR2_STOP		(0b11 << 12)
 #define CR1_OVER8		(1 << 15)
-//~91.1 for baudrate 115200 at peripheral freq 84 MHz
-#define BRR_USARTDIV	0x38F	// Should be less than 16 bit
+
+
+#define BRR_USARTDIV	0x113	// Should be less than 16 bit, this is for default peripheral
+								//	freq 16MHz and over8 = 1
+								// Using formula (Fck / ((8 * (2 - OVER8)) * BAUDRATE)
+								// DIV_FRAC = 8 * (2 - OVER8) * Fractional part of above result
 #define CR1_TE			(1 << 3)
 
 
