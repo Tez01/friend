@@ -1,3 +1,0 @@
-../Core/Src/main.c:19:6:a	4	static
-../Core/Src/main.c:55:6:main	16	static
-../Core/Src/main.c:86:6:a_init	8	static

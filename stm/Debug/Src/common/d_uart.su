@@ -1,0 +1,7 @@
+../Src/common/d_uart.c:108:6:d_uart_init	16	static
+../Src/common/d_uart.c:180:6:USART1_GPIO_Init	8	static
+../Src/common/d_uart.c:197:6:USART1_GPIO_TX_Init	4	static
+../Src/common/d_uart.c:222:6:USART1_GPIO_RX_Init	4	static
+../Src/common/d_uart.c:247:6:USART2_GPIO_Init	8	static
+../Src/common/d_uart.c:263:6:USART2_GPIO_TX_Init	4	static
+../Src/common/d_uart.c:288:6:USART2_GPIO_RX_Init	4	static
