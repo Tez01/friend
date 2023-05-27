@@ -56,11 +56,17 @@ int  main(void){
 	// Initialize everything in the application
 	a_init();
 
-	// Create a task for communication with pc
+	// Queue to handle receiving of data. Data is pushed into this
+	// queue by Rx interrupt handler. As soon data is available in
+	// this queue, the state of data processing task becomes active.
 
-	// create a task for processing the commands
 
-	// create a task to display current running command on LCD
+	// Queue to handle transmit of data. Data is pushed into this
+	// queue by Data processing task task which triggers Tx interrupt.
+
+	// create a task for processing data in the queue
+
+	// create tasks for processing different commands
 
 	// Start the scheduler
 
