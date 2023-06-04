@@ -12,6 +12,9 @@ RM := rm -rf
 -include Startup/subdir.mk
 -include Src/common/subdir.mk
 -include Src/subdir.mk
+-include Drivers/Third_Party/FreeRTOS/portable/MemMang/subdir.mk
+-include Drivers/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F/subdir.mk
+-include Drivers/Third_Party/FreeRTOS/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

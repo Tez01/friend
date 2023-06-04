@@ -5,716 +5,1546 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000198  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         000003a0  08000198  08000198  00010198  2**2
+  1 .text         00000814  080001a0  080001a0  000101a0  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000000  08000538  08000540  00010540  2**0
+  2 .rodata       00000000  080009b4  080009bc  000109bc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .ARM.extab    00000000  08000538  08000538  00010540  2**0
+  3 .ARM.extab    00000000  080009b4  080009b4  000109bc  2**0
                   CONTENTS
-  4 .ARM          00000000  08000538  08000538  00010540  2**0
+  4 .ARM          00000000  080009b4  080009b4  000109bc  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08000538  08000540  00010540  2**0
+  5 .preinit_array 00000000  080009b4  080009bc  000109bc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08000538  08000538  00010538  2**2
+  6 .init_array   00000004  080009b4  080009b4  000109b4  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0800053c  0800053c  0001053c  2**2
+  7 .fini_array   00000004  080009b8  080009b8  000109b8  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000000  20000000  20000000  00010540  2**0
+  8 .data         00000000  20000000  20000000  000109bc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000001c  20000000  08000540  00020000  2**2
+  9 .bss          000000a8  20000000  080009bc  00020000  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  2000001c  08000540  0002001c  2**0
+ 10 ._user_heap_stack 00000600  200000a8  080009bc  000200a8  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  00010540  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  000109bc  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000005e3  00000000  00000000  00010570  2**0
+ 12 .debug_info   00003455  00000000  00000000  000109ec  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00000250  00000000  00000000  00010b53  2**0
+ 13 .debug_abbrev 000008aa  00000000  00000000  00013e41  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000000a8  00000000  00000000  00010da8  2**3
+ 14 .debug_aranges 00000388  00000000  00000000  000146f0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00000080  00000000  00000000  00010e50  2**3
+ 15 .debug_ranges 00000330  00000000  00000000  00014a78  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0000dd0d  00000000  00000000  00010ed0  2**0
+ 16 .debug_macro  0000d299  00000000  00000000  00014da8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00000c01  00000000  00000000  0001ebdd  2**0
+ 17 .debug_line   000033b3  00000000  00000000  00022041  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0004f5ec  00000000  00000000  0001f7de  2**0
+ 18 .debug_str    0005a0a4  00000000  00000000  000253f4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  0006edca  2**0
+ 19 .comment      00000050  00000000  00000000  0007f498  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000184  00000000  00000000  0006ee1c  2**2
+ 20 .debug_frame  00000d1c  00000000  00000000  0007f4e8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
 
-08000198 <__do_global_dtors_aux>:
- 8000198:	b510      	push	{r4, lr}
- 800019a:	4c05      	ldr	r4, [pc, #20]	; (80001b0 <__do_global_dtors_aux+0x18>)
- 800019c:	7823      	ldrb	r3, [r4, #0]
- 800019e:	b933      	cbnz	r3, 80001ae <__do_global_dtors_aux+0x16>
- 80001a0:	4b04      	ldr	r3, [pc, #16]	; (80001b4 <__do_global_dtors_aux+0x1c>)
- 80001a2:	b113      	cbz	r3, 80001aa <__do_global_dtors_aux+0x12>
- 80001a4:	4804      	ldr	r0, [pc, #16]	; (80001b8 <__do_global_dtors_aux+0x20>)
- 80001a6:	f3af 8000 	nop.w
- 80001aa:	2301      	movs	r3, #1
- 80001ac:	7023      	strb	r3, [r4, #0]
- 80001ae:	bd10      	pop	{r4, pc}
- 80001b0:	20000000 	.word	0x20000000
- 80001b4:	00000000 	.word	0x00000000
- 80001b8:	08000520 	.word	0x08000520
+080001a0 <__do_global_dtors_aux>:
+ 80001a0:	b510      	push	{r4, lr}
+ 80001a2:	4c05      	ldr	r4, [pc, #20]	; (80001b8 <__do_global_dtors_aux+0x18>)
+ 80001a4:	7823      	ldrb	r3, [r4, #0]
+ 80001a6:	b933      	cbnz	r3, 80001b6 <__do_global_dtors_aux+0x16>
+ 80001a8:	4b04      	ldr	r3, [pc, #16]	; (80001bc <__do_global_dtors_aux+0x1c>)
+ 80001aa:	b113      	cbz	r3, 80001b2 <__do_global_dtors_aux+0x12>
+ 80001ac:	4804      	ldr	r0, [pc, #16]	; (80001c0 <__do_global_dtors_aux+0x20>)
+ 80001ae:	f3af 8000 	nop.w
+ 80001b2:	2301      	movs	r3, #1
+ 80001b4:	7023      	strb	r3, [r4, #0]
+ 80001b6:	bd10      	pop	{r4, pc}
+ 80001b8:	20000000 	.word	0x20000000
+ 80001bc:	00000000 	.word	0x00000000
+ 80001c0:	0800099c 	.word	0x0800099c
 
-080001bc <frame_dummy>:
- 80001bc:	b508      	push	{r3, lr}
- 80001be:	4b03      	ldr	r3, [pc, #12]	; (80001cc <frame_dummy+0x10>)
- 80001c0:	b11b      	cbz	r3, 80001ca <frame_dummy+0xe>
- 80001c2:	4903      	ldr	r1, [pc, #12]	; (80001d0 <frame_dummy+0x14>)
- 80001c4:	4803      	ldr	r0, [pc, #12]	; (80001d4 <frame_dummy+0x18>)
- 80001c6:	f3af 8000 	nop.w
- 80001ca:	bd08      	pop	{r3, pc}
- 80001cc:	00000000 	.word	0x00000000
- 80001d0:	20000004 	.word	0x20000004
- 80001d4:	08000520 	.word	0x08000520
+080001c4 <frame_dummy>:
+ 80001c4:	b508      	push	{r3, lr}
+ 80001c6:	4b03      	ldr	r3, [pc, #12]	; (80001d4 <frame_dummy+0x10>)
+ 80001c8:	b11b      	cbz	r3, 80001d2 <frame_dummy+0xe>
+ 80001ca:	4903      	ldr	r1, [pc, #12]	; (80001d8 <frame_dummy+0x14>)
+ 80001cc:	4803      	ldr	r0, [pc, #12]	; (80001dc <frame_dummy+0x18>)
+ 80001ce:	f3af 8000 	nop.w
+ 80001d2:	bd08      	pop	{r3, pc}
+ 80001d4:	00000000 	.word	0x00000000
+ 80001d8:	20000004 	.word	0x20000004
+ 80001dc:	0800099c 	.word	0x0800099c
 
-080001d8 <d_uart_init>:
+080001e0 <xTaskIncrementTick>:
+
+#endif /* INCLUDE_xTaskAbortDelay */
+/*----------------------------------------------------------*/
+
+BaseType_t xTaskIncrementTick( void )
+{
+ 80001e0:	b580      	push	{r7, lr}
+ 80001e2:	b08a      	sub	sp, #40	; 0x28
+ 80001e4:	af00      	add	r7, sp, #0
+    TCB_t * pxTCB;
+    TickType_t xItemValue;
+    BaseType_t xSwitchRequired = pdFALSE;
+ 80001e6:	2300      	movs	r3, #0
+ 80001e8:	627b      	str	r3, [r7, #36]	; 0x24
+    /* Called by the portable layer each time a tick interrupt occurs.
+     * Increments the tick then checks to see if the new tick value will cause any
+     * tasks to be unblocked. */
+    traceTASK_INCREMENT_TICK( xTickCount );
+
+    if( uxSchedulerSuspended == ( UBaseType_t ) pdFALSE )
+ 80001ea:	4b7d      	ldr	r3, [pc, #500]	; (80003e0 <xTaskIncrementTick+0x200>)
+ 80001ec:	681b      	ldr	r3, [r3, #0]
+ 80001ee:	2b00      	cmp	r3, #0
+ 80001f0:	f040 80ec 	bne.w	80003cc <xTaskIncrementTick+0x1ec>
+    {
+        /* Minor optimisation.  The tick count cannot change in this
+         * block. */
+        const TickType_t xConstTickCount = xTickCount + ( TickType_t ) 1;
+ 80001f4:	4b7b      	ldr	r3, [pc, #492]	; (80003e4 <xTaskIncrementTick+0x204>)
+ 80001f6:	681b      	ldr	r3, [r3, #0]
+ 80001f8:	3301      	adds	r3, #1
+ 80001fa:	623b      	str	r3, [r7, #32]
+
+        /* Increment the RTOS tick, switching the delayed and overflowed
+         * delayed lists if it wraps to 0. */
+        xTickCount = xConstTickCount;
+ 80001fc:	4a79      	ldr	r2, [pc, #484]	; (80003e4 <xTaskIncrementTick+0x204>)
+ 80001fe:	6a3b      	ldr	r3, [r7, #32]
+ 8000200:	6013      	str	r3, [r2, #0]
+
+        if( xConstTickCount == ( TickType_t ) 0U ) /*lint !e774 'if' does not always evaluate to false as it is looking for an overflow. */
+ 8000202:	6a3b      	ldr	r3, [r7, #32]
+ 8000204:	2b00      	cmp	r3, #0
+ 8000206:	d120      	bne.n	800024a <xTaskIncrementTick+0x6a>
+        {
+            taskSWITCH_DELAYED_LISTS();
+ 8000208:	4b77      	ldr	r3, [pc, #476]	; (80003e8 <xTaskIncrementTick+0x208>)
+ 800020a:	681b      	ldr	r3, [r3, #0]
+ 800020c:	681b      	ldr	r3, [r3, #0]
+ 800020e:	2b00      	cmp	r3, #0
+ 8000210:	d00a      	beq.n	8000228 <xTaskIncrementTick+0x48>
+
+    portFORCE_INLINE static void vPortRaiseBASEPRI( void )
+    {
+        uint32_t ulNewBASEPRI;
+
+        __asm volatile
+ 8000212:	f04f 0350 	mov.w	r3, #80	; 0x50
+ 8000216:	f383 8811 	msr	BASEPRI, r3
+ 800021a:	f3bf 8f6f 	isb	sy
+ 800021e:	f3bf 8f4f 	dsb	sy
+ 8000222:	607b      	str	r3, [r7, #4]
+            "	msr basepri, %0											\n"\
+            "	isb														\n"\
+            "	dsb														\n"\
+            : "=r" ( ulNewBASEPRI ) : "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "memory"
+        );
+    }
+ 8000224:	bf00      	nop
+ 8000226:	e7fe      	b.n	8000226 <xTaskIncrementTick+0x46>
+ 8000228:	4b6f      	ldr	r3, [pc, #444]	; (80003e8 <xTaskIncrementTick+0x208>)
+ 800022a:	681b      	ldr	r3, [r3, #0]
+ 800022c:	61fb      	str	r3, [r7, #28]
+ 800022e:	4b6f      	ldr	r3, [pc, #444]	; (80003ec <xTaskIncrementTick+0x20c>)
+ 8000230:	681b      	ldr	r3, [r3, #0]
+ 8000232:	4a6d      	ldr	r2, [pc, #436]	; (80003e8 <xTaskIncrementTick+0x208>)
+ 8000234:	6013      	str	r3, [r2, #0]
+ 8000236:	4a6d      	ldr	r2, [pc, #436]	; (80003ec <xTaskIncrementTick+0x20c>)
+ 8000238:	69fb      	ldr	r3, [r7, #28]
+ 800023a:	6013      	str	r3, [r2, #0]
+ 800023c:	4b6c      	ldr	r3, [pc, #432]	; (80003f0 <xTaskIncrementTick+0x210>)
+ 800023e:	681b      	ldr	r3, [r3, #0]
+ 8000240:	3301      	adds	r3, #1
+ 8000242:	4a6b      	ldr	r2, [pc, #428]	; (80003f0 <xTaskIncrementTick+0x210>)
+ 8000244:	6013      	str	r3, [r2, #0]
+ 8000246:	f000 f93d 	bl	80004c4 <prvResetNextTaskUnblockTime>
+
+        /* See if this tick has made a timeout expire.  Tasks are stored in
+         * the  queue in the order of their wake time - meaning once one task
+         * has been found whose block time has not expired there is no need to
+         * look any further down the list. */
+        if( xConstTickCount >= xNextTaskUnblockTime )
+ 800024a:	4b6a      	ldr	r3, [pc, #424]	; (80003f4 <xTaskIncrementTick+0x214>)
+ 800024c:	681b      	ldr	r3, [r3, #0]
+ 800024e:	6a3a      	ldr	r2, [r7, #32]
+ 8000250:	429a      	cmp	r2, r3
+ 8000252:	f0c0 80a6 	bcc.w	80003a2 <xTaskIncrementTick+0x1c2>
+        {
+            for( ; ; )
+            {
+                if( listLIST_IS_EMPTY( pxDelayedTaskList ) != pdFALSE )
+ 8000256:	4b64      	ldr	r3, [pc, #400]	; (80003e8 <xTaskIncrementTick+0x208>)
+ 8000258:	681b      	ldr	r3, [r3, #0]
+ 800025a:	681b      	ldr	r3, [r3, #0]
+ 800025c:	2b00      	cmp	r3, #0
+ 800025e:	d104      	bne.n	800026a <xTaskIncrementTick+0x8a>
+                    /* The delayed list is empty.  Set xNextTaskUnblockTime
+                     * to the maximum possible value so it is extremely
+                     * unlikely that the
+                     * if( xTickCount >= xNextTaskUnblockTime ) test will pass
+                     * next time through. */
+                    xNextTaskUnblockTime = portMAX_DELAY; /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
+ 8000260:	4b64      	ldr	r3, [pc, #400]	; (80003f4 <xTaskIncrementTick+0x214>)
+ 8000262:	f04f 32ff 	mov.w	r2, #4294967295	; 0xffffffff
+ 8000266:	601a      	str	r2, [r3, #0]
+                    break;
+ 8000268:	e09b      	b.n	80003a2 <xTaskIncrementTick+0x1c2>
+                {
+                    /* The delayed list is not empty, get the value of the
+                     * item at the head of the delayed list.  This is the time
+                     * at which the task at the head of the delayed list must
+                     * be removed from the Blocked state. */
+                    pxTCB = listGET_OWNER_OF_HEAD_ENTRY( pxDelayedTaskList ); /*lint !e9079 void * is used as this macro is used with timers and co-routines too.  Alignment is known to be fine as the type of the pointer stored and retrieved is the same. */
+ 800026a:	4b5f      	ldr	r3, [pc, #380]	; (80003e8 <xTaskIncrementTick+0x208>)
+ 800026c:	681b      	ldr	r3, [r3, #0]
+ 800026e:	68db      	ldr	r3, [r3, #12]
+ 8000270:	68db      	ldr	r3, [r3, #12]
+ 8000272:	61bb      	str	r3, [r7, #24]
+                    xItemValue = listGET_LIST_ITEM_VALUE( &( pxTCB->xStateListItem ) );
+ 8000274:	69bb      	ldr	r3, [r7, #24]
+ 8000276:	685b      	ldr	r3, [r3, #4]
+ 8000278:	617b      	str	r3, [r7, #20]
+
+                    if( xConstTickCount < xItemValue )
+ 800027a:	6a3a      	ldr	r2, [r7, #32]
+ 800027c:	697b      	ldr	r3, [r7, #20]
+ 800027e:	429a      	cmp	r2, r3
+ 8000280:	d203      	bcs.n	800028a <xTaskIncrementTick+0xaa>
+                        /* It is not time to unblock this item yet, but the
+                         * item value is the time at which the task at the head
+                         * of the blocked list must be removed from the Blocked
+                         * state -  so record the item value in
+                         * xNextTaskUnblockTime. */
+                        xNextTaskUnblockTime = xItemValue;
+ 8000282:	4a5c      	ldr	r2, [pc, #368]	; (80003f4 <xTaskIncrementTick+0x214>)
+ 8000284:	697b      	ldr	r3, [r7, #20]
+ 8000286:	6013      	str	r3, [r2, #0]
+                        break; /*lint !e9011 Code structure here is deemed easier to understand with multiple breaks. */
+ 8000288:	e08b      	b.n	80003a2 <xTaskIncrementTick+0x1c2>
+                    {
+                        mtCOVERAGE_TEST_MARKER();
+                    }
+
+                    /* It is time to remove the item from the Blocked state. */
+                    listREMOVE_ITEM( &( pxTCB->xStateListItem ) );
+ 800028a:	69bb      	ldr	r3, [r7, #24]
+ 800028c:	695b      	ldr	r3, [r3, #20]
+ 800028e:	613b      	str	r3, [r7, #16]
+ 8000290:	69bb      	ldr	r3, [r7, #24]
+ 8000292:	689b      	ldr	r3, [r3, #8]
+ 8000294:	69ba      	ldr	r2, [r7, #24]
+ 8000296:	68d2      	ldr	r2, [r2, #12]
+ 8000298:	609a      	str	r2, [r3, #8]
+ 800029a:	69bb      	ldr	r3, [r7, #24]
+ 800029c:	68db      	ldr	r3, [r3, #12]
+ 800029e:	69ba      	ldr	r2, [r7, #24]
+ 80002a0:	6892      	ldr	r2, [r2, #8]
+ 80002a2:	605a      	str	r2, [r3, #4]
+ 80002a4:	693b      	ldr	r3, [r7, #16]
+ 80002a6:	685a      	ldr	r2, [r3, #4]
+ 80002a8:	69bb      	ldr	r3, [r7, #24]
+ 80002aa:	3304      	adds	r3, #4
+ 80002ac:	429a      	cmp	r2, r3
+ 80002ae:	d103      	bne.n	80002b8 <xTaskIncrementTick+0xd8>
+ 80002b0:	69bb      	ldr	r3, [r7, #24]
+ 80002b2:	68da      	ldr	r2, [r3, #12]
+ 80002b4:	693b      	ldr	r3, [r7, #16]
+ 80002b6:	605a      	str	r2, [r3, #4]
+ 80002b8:	69bb      	ldr	r3, [r7, #24]
+ 80002ba:	2200      	movs	r2, #0
+ 80002bc:	615a      	str	r2, [r3, #20]
+ 80002be:	693b      	ldr	r3, [r7, #16]
+ 80002c0:	681b      	ldr	r3, [r3, #0]
+ 80002c2:	1e5a      	subs	r2, r3, #1
+ 80002c4:	693b      	ldr	r3, [r7, #16]
+ 80002c6:	601a      	str	r2, [r3, #0]
+
+                    /* Is the task waiting on an event also?  If so remove
+                     * it from the event list. */
+                    if( listLIST_ITEM_CONTAINER( &( pxTCB->xEventListItem ) ) != NULL )
+ 80002c8:	69bb      	ldr	r3, [r7, #24]
+ 80002ca:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+ 80002cc:	2b00      	cmp	r3, #0
+ 80002ce:	d01e      	beq.n	800030e <xTaskIncrementTick+0x12e>
+                    {
+                        listREMOVE_ITEM( &( pxTCB->xEventListItem ) );
+ 80002d0:	69bb      	ldr	r3, [r7, #24]
+ 80002d2:	6a9b      	ldr	r3, [r3, #40]	; 0x28
+ 80002d4:	60fb      	str	r3, [r7, #12]
+ 80002d6:	69bb      	ldr	r3, [r7, #24]
+ 80002d8:	69db      	ldr	r3, [r3, #28]
+ 80002da:	69ba      	ldr	r2, [r7, #24]
+ 80002dc:	6a12      	ldr	r2, [r2, #32]
+ 80002de:	609a      	str	r2, [r3, #8]
+ 80002e0:	69bb      	ldr	r3, [r7, #24]
+ 80002e2:	6a1b      	ldr	r3, [r3, #32]
+ 80002e4:	69ba      	ldr	r2, [r7, #24]
+ 80002e6:	69d2      	ldr	r2, [r2, #28]
+ 80002e8:	605a      	str	r2, [r3, #4]
+ 80002ea:	68fb      	ldr	r3, [r7, #12]
+ 80002ec:	685a      	ldr	r2, [r3, #4]
+ 80002ee:	69bb      	ldr	r3, [r7, #24]
+ 80002f0:	3318      	adds	r3, #24
+ 80002f2:	429a      	cmp	r2, r3
+ 80002f4:	d103      	bne.n	80002fe <xTaskIncrementTick+0x11e>
+ 80002f6:	69bb      	ldr	r3, [r7, #24]
+ 80002f8:	6a1a      	ldr	r2, [r3, #32]
+ 80002fa:	68fb      	ldr	r3, [r7, #12]
+ 80002fc:	605a      	str	r2, [r3, #4]
+ 80002fe:	69bb      	ldr	r3, [r7, #24]
+ 8000300:	2200      	movs	r2, #0
+ 8000302:	629a      	str	r2, [r3, #40]	; 0x28
+ 8000304:	68fb      	ldr	r3, [r7, #12]
+ 8000306:	681b      	ldr	r3, [r3, #0]
+ 8000308:	1e5a      	subs	r2, r3, #1
+ 800030a:	68fb      	ldr	r3, [r7, #12]
+ 800030c:	601a      	str	r2, [r3, #0]
+                        mtCOVERAGE_TEST_MARKER();
+                    }
+
+                    /* Place the unblocked task into the appropriate ready
+                     * list. */
+                    prvAddTaskToReadyList( pxTCB );
+ 800030e:	69bb      	ldr	r3, [r7, #24]
+ 8000310:	6adb      	ldr	r3, [r3, #44]	; 0x2c
+ 8000312:	2201      	movs	r2, #1
+ 8000314:	409a      	lsls	r2, r3
+ 8000316:	4b38      	ldr	r3, [pc, #224]	; (80003f8 <xTaskIncrementTick+0x218>)
+ 8000318:	681b      	ldr	r3, [r3, #0]
+ 800031a:	4313      	orrs	r3, r2
+ 800031c:	4a36      	ldr	r2, [pc, #216]	; (80003f8 <xTaskIncrementTick+0x218>)
+ 800031e:	6013      	str	r3, [r2, #0]
+ 8000320:	69bb      	ldr	r3, [r7, #24]
+ 8000322:	6ada      	ldr	r2, [r3, #44]	; 0x2c
+ 8000324:	4935      	ldr	r1, [pc, #212]	; (80003fc <xTaskIncrementTick+0x21c>)
+ 8000326:	4613      	mov	r3, r2
+ 8000328:	009b      	lsls	r3, r3, #2
+ 800032a:	4413      	add	r3, r2
+ 800032c:	009b      	lsls	r3, r3, #2
+ 800032e:	440b      	add	r3, r1
+ 8000330:	3304      	adds	r3, #4
+ 8000332:	681b      	ldr	r3, [r3, #0]
+ 8000334:	60bb      	str	r3, [r7, #8]
+ 8000336:	69bb      	ldr	r3, [r7, #24]
+ 8000338:	68ba      	ldr	r2, [r7, #8]
+ 800033a:	609a      	str	r2, [r3, #8]
+ 800033c:	68bb      	ldr	r3, [r7, #8]
+ 800033e:	689a      	ldr	r2, [r3, #8]
+ 8000340:	69bb      	ldr	r3, [r7, #24]
+ 8000342:	60da      	str	r2, [r3, #12]
+ 8000344:	68bb      	ldr	r3, [r7, #8]
+ 8000346:	689b      	ldr	r3, [r3, #8]
+ 8000348:	69ba      	ldr	r2, [r7, #24]
+ 800034a:	3204      	adds	r2, #4
+ 800034c:	605a      	str	r2, [r3, #4]
+ 800034e:	69bb      	ldr	r3, [r7, #24]
+ 8000350:	1d1a      	adds	r2, r3, #4
+ 8000352:	68bb      	ldr	r3, [r7, #8]
+ 8000354:	609a      	str	r2, [r3, #8]
+ 8000356:	69bb      	ldr	r3, [r7, #24]
+ 8000358:	6ada      	ldr	r2, [r3, #44]	; 0x2c
+ 800035a:	4613      	mov	r3, r2
+ 800035c:	009b      	lsls	r3, r3, #2
+ 800035e:	4413      	add	r3, r2
+ 8000360:	009b      	lsls	r3, r3, #2
+ 8000362:	4a26      	ldr	r2, [pc, #152]	; (80003fc <xTaskIncrementTick+0x21c>)
+ 8000364:	441a      	add	r2, r3
+ 8000366:	69bb      	ldr	r3, [r7, #24]
+ 8000368:	615a      	str	r2, [r3, #20]
+ 800036a:	69bb      	ldr	r3, [r7, #24]
+ 800036c:	6ada      	ldr	r2, [r3, #44]	; 0x2c
+ 800036e:	4923      	ldr	r1, [pc, #140]	; (80003fc <xTaskIncrementTick+0x21c>)
+ 8000370:	4613      	mov	r3, r2
+ 8000372:	009b      	lsls	r3, r3, #2
+ 8000374:	4413      	add	r3, r2
+ 8000376:	009b      	lsls	r3, r3, #2
+ 8000378:	440b      	add	r3, r1
+ 800037a:	681b      	ldr	r3, [r3, #0]
+ 800037c:	1c59      	adds	r1, r3, #1
+ 800037e:	481f      	ldr	r0, [pc, #124]	; (80003fc <xTaskIncrementTick+0x21c>)
+ 8000380:	4613      	mov	r3, r2
+ 8000382:	009b      	lsls	r3, r3, #2
+ 8000384:	4413      	add	r3, r2
+ 8000386:	009b      	lsls	r3, r3, #2
+ 8000388:	4403      	add	r3, r0
+ 800038a:	6019      	str	r1, [r3, #0]
+                         * task.
+                         * The case of equal priority tasks sharing
+                         * processing time (which happens when both
+                         * preemption and time slicing are on) is
+                         * handled below.*/
+                        if( pxTCB->uxPriority > pxCurrentTCB->uxPriority )
+ 800038c:	69bb      	ldr	r3, [r7, #24]
+ 800038e:	6ada      	ldr	r2, [r3, #44]	; 0x2c
+ 8000390:	4b1b      	ldr	r3, [pc, #108]	; (8000400 <xTaskIncrementTick+0x220>)
+ 8000392:	681b      	ldr	r3, [r3, #0]
+ 8000394:	6adb      	ldr	r3, [r3, #44]	; 0x2c
+ 8000396:	429a      	cmp	r2, r3
+ 8000398:	f67f af5d 	bls.w	8000256 <xTaskIncrementTick+0x76>
+                        {
+                            xSwitchRequired = pdTRUE;
+ 800039c:	2301      	movs	r3, #1
+ 800039e:	627b      	str	r3, [r7, #36]	; 0x24
+                if( listLIST_IS_EMPTY( pxDelayedTaskList ) != pdFALSE )
+ 80003a0:	e759      	b.n	8000256 <xTaskIncrementTick+0x76>
+        /* Tasks of equal priority to the currently running task will share
+         * processing time (time slice) if preemption is on, and the application
+         * writer has not explicitly turned time slicing off. */
+        #if ( ( configUSE_PREEMPTION == 1 ) && ( configUSE_TIME_SLICING == 1 ) )
+        {
+            if( listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ pxCurrentTCB->uxPriority ] ) ) > ( UBaseType_t ) 1 )
+ 80003a2:	4b17      	ldr	r3, [pc, #92]	; (8000400 <xTaskIncrementTick+0x220>)
+ 80003a4:	681b      	ldr	r3, [r3, #0]
+ 80003a6:	6ada      	ldr	r2, [r3, #44]	; 0x2c
+ 80003a8:	4914      	ldr	r1, [pc, #80]	; (80003fc <xTaskIncrementTick+0x21c>)
+ 80003aa:	4613      	mov	r3, r2
+ 80003ac:	009b      	lsls	r3, r3, #2
+ 80003ae:	4413      	add	r3, r2
+ 80003b0:	009b      	lsls	r3, r3, #2
+ 80003b2:	440b      	add	r3, r1
+ 80003b4:	681b      	ldr	r3, [r3, #0]
+ 80003b6:	2b01      	cmp	r3, #1
+ 80003b8:	d901      	bls.n	80003be <xTaskIncrementTick+0x1de>
+            {
+                xSwitchRequired = pdTRUE;
+ 80003ba:	2301      	movs	r3, #1
+ 80003bc:	627b      	str	r3, [r7, #36]	; 0x24
+        }
+        #endif /* configUSE_TICK_HOOK */
+
+        #if ( configUSE_PREEMPTION == 1 )
+        {
+            if( xYieldPending != pdFALSE )
+ 80003be:	4b11      	ldr	r3, [pc, #68]	; (8000404 <xTaskIncrementTick+0x224>)
+ 80003c0:	681b      	ldr	r3, [r3, #0]
+ 80003c2:	2b00      	cmp	r3, #0
+ 80003c4:	d007      	beq.n	80003d6 <xTaskIncrementTick+0x1f6>
+            {
+                xSwitchRequired = pdTRUE;
+ 80003c6:	2301      	movs	r3, #1
+ 80003c8:	627b      	str	r3, [r7, #36]	; 0x24
+ 80003ca:	e004      	b.n	80003d6 <xTaskIncrementTick+0x1f6>
+        }
+        #endif /* configUSE_PREEMPTION */
+    }
+    else
+    {
+        ++xPendedTicks;
+ 80003cc:	4b0e      	ldr	r3, [pc, #56]	; (8000408 <xTaskIncrementTick+0x228>)
+ 80003ce:	681b      	ldr	r3, [r3, #0]
+ 80003d0:	3301      	adds	r3, #1
+ 80003d2:	4a0d      	ldr	r2, [pc, #52]	; (8000408 <xTaskIncrementTick+0x228>)
+ 80003d4:	6013      	str	r3, [r2, #0]
+            vApplicationTickHook();
+        }
+        #endif
+    }
+
+    return xSwitchRequired;
+ 80003d6:	6a7b      	ldr	r3, [r7, #36]	; 0x24
+}
+ 80003d8:	4618      	mov	r0, r3
+ 80003da:	3728      	adds	r7, #40	; 0x28
+ 80003dc:	46bd      	mov	sp, r7
+ 80003de:	bd80      	pop	{r7, pc}
+ 80003e0:	200000a4 	.word	0x200000a4
+ 80003e4:	2000008c 	.word	0x2000008c
+ 80003e8:	20000084 	.word	0x20000084
+ 80003ec:	20000088 	.word	0x20000088
+ 80003f0:	2000009c 	.word	0x2000009c
+ 80003f4:	200000a0 	.word	0x200000a0
+ 80003f8:	20000090 	.word	0x20000090
+ 80003fc:	20000020 	.word	0x20000020
+ 8000400:	2000001c 	.word	0x2000001c
+ 8000404:	20000098 	.word	0x20000098
+ 8000408:	20000094 	.word	0x20000094
+
+0800040c <vTaskSwitchContext>:
+
+#endif /* configUSE_APPLICATION_TASK_TAG */
+/*-----------------------------------------------------------*/
+
+void vTaskSwitchContext( void )
+{
+ 800040c:	b480      	push	{r7}
+ 800040e:	b087      	sub	sp, #28
+ 8000410:	af00      	add	r7, sp, #0
+    if( uxSchedulerSuspended != ( UBaseType_t ) pdFALSE )
+ 8000412:	4b27      	ldr	r3, [pc, #156]	; (80004b0 <vTaskSwitchContext+0xa4>)
+ 8000414:	681b      	ldr	r3, [r3, #0]
+ 8000416:	2b00      	cmp	r3, #0
+ 8000418:	d003      	beq.n	8000422 <vTaskSwitchContext+0x16>
+    {
+        /* The scheduler is currently suspended - do not allow a context
+         * switch. */
+        xYieldPending = pdTRUE;
+ 800041a:	4b26      	ldr	r3, [pc, #152]	; (80004b4 <vTaskSwitchContext+0xa8>)
+ 800041c:	2201      	movs	r2, #1
+ 800041e:	601a      	str	r2, [r3, #0]
+             * Block specific to this task. */
+            configSET_TLS_BLOCK( pxCurrentTCB->xTLSBlock );
+        }
+        #endif
+    }
+}
+ 8000420:	e03f      	b.n	80004a2 <vTaskSwitchContext+0x96>
+        xYieldPending = pdFALSE;
+ 8000422:	4b24      	ldr	r3, [pc, #144]	; (80004b4 <vTaskSwitchContext+0xa8>)
+ 8000424:	2200      	movs	r2, #0
+ 8000426:	601a      	str	r2, [r3, #0]
+        taskSELECT_HIGHEST_PRIORITY_TASK(); /*lint !e9079 void * is used as this macro is used with timers and co-routines too.  Alignment is known to be fine as the type of the pointer stored and retrieved is the same. */
+ 8000428:	4b23      	ldr	r3, [pc, #140]	; (80004b8 <vTaskSwitchContext+0xac>)
+ 800042a:	681b      	ldr	r3, [r3, #0]
+ 800042c:	60fb      	str	r3, [r7, #12]
+            __asm volatile ( "clz %0, %1" : "=r" ( ucReturn ) : "r" ( ulBitmap ) : "memory" );
+ 800042e:	68fb      	ldr	r3, [r7, #12]
+ 8000430:	fab3 f383 	clz	r3, r3
+ 8000434:	72fb      	strb	r3, [r7, #11]
+            return ucReturn;
+ 8000436:	7afb      	ldrb	r3, [r7, #11]
+ 8000438:	f1c3 031f 	rsb	r3, r3, #31
+ 800043c:	617b      	str	r3, [r7, #20]
+ 800043e:	491f      	ldr	r1, [pc, #124]	; (80004bc <vTaskSwitchContext+0xb0>)
+ 8000440:	697a      	ldr	r2, [r7, #20]
+ 8000442:	4613      	mov	r3, r2
+ 8000444:	009b      	lsls	r3, r3, #2
+ 8000446:	4413      	add	r3, r2
+ 8000448:	009b      	lsls	r3, r3, #2
+ 800044a:	440b      	add	r3, r1
+ 800044c:	681b      	ldr	r3, [r3, #0]
+ 800044e:	2b00      	cmp	r3, #0
+ 8000450:	d10a      	bne.n	8000468 <vTaskSwitchContext+0x5c>
+        __asm volatile
+ 8000452:	f04f 0350 	mov.w	r3, #80	; 0x50
+ 8000456:	f383 8811 	msr	BASEPRI, r3
+ 800045a:	f3bf 8f6f 	isb	sy
+ 800045e:	f3bf 8f4f 	dsb	sy
+ 8000462:	607b      	str	r3, [r7, #4]
+    }
+ 8000464:	bf00      	nop
+ 8000466:	e7fe      	b.n	8000466 <vTaskSwitchContext+0x5a>
+ 8000468:	697a      	ldr	r2, [r7, #20]
+ 800046a:	4613      	mov	r3, r2
+ 800046c:	009b      	lsls	r3, r3, #2
+ 800046e:	4413      	add	r3, r2
+ 8000470:	009b      	lsls	r3, r3, #2
+ 8000472:	4a12      	ldr	r2, [pc, #72]	; (80004bc <vTaskSwitchContext+0xb0>)
+ 8000474:	4413      	add	r3, r2
+ 8000476:	613b      	str	r3, [r7, #16]
+ 8000478:	693b      	ldr	r3, [r7, #16]
+ 800047a:	685b      	ldr	r3, [r3, #4]
+ 800047c:	685a      	ldr	r2, [r3, #4]
+ 800047e:	693b      	ldr	r3, [r7, #16]
+ 8000480:	605a      	str	r2, [r3, #4]
+ 8000482:	693b      	ldr	r3, [r7, #16]
+ 8000484:	685a      	ldr	r2, [r3, #4]
+ 8000486:	693b      	ldr	r3, [r7, #16]
+ 8000488:	3308      	adds	r3, #8
+ 800048a:	429a      	cmp	r2, r3
+ 800048c:	d104      	bne.n	8000498 <vTaskSwitchContext+0x8c>
+ 800048e:	693b      	ldr	r3, [r7, #16]
+ 8000490:	685b      	ldr	r3, [r3, #4]
+ 8000492:	685a      	ldr	r2, [r3, #4]
+ 8000494:	693b      	ldr	r3, [r7, #16]
+ 8000496:	605a      	str	r2, [r3, #4]
+ 8000498:	693b      	ldr	r3, [r7, #16]
+ 800049a:	685b      	ldr	r3, [r3, #4]
+ 800049c:	68db      	ldr	r3, [r3, #12]
+ 800049e:	4a08      	ldr	r2, [pc, #32]	; (80004c0 <vTaskSwitchContext+0xb4>)
+ 80004a0:	6013      	str	r3, [r2, #0]
+}
+ 80004a2:	bf00      	nop
+ 80004a4:	371c      	adds	r7, #28
+ 80004a6:	46bd      	mov	sp, r7
+ 80004a8:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80004ac:	4770      	bx	lr
+ 80004ae:	bf00      	nop
+ 80004b0:	200000a4 	.word	0x200000a4
+ 80004b4:	20000098 	.word	0x20000098
+ 80004b8:	20000090 	.word	0x20000090
+ 80004bc:	20000020 	.word	0x20000020
+ 80004c0:	2000001c 	.word	0x2000001c
+
+080004c4 <prvResetNextTaskUnblockTime>:
+
+#endif /* INCLUDE_vTaskDelete */
+/*-----------------------------------------------------------*/
+
+static void prvResetNextTaskUnblockTime( void )
+{
+ 80004c4:	b480      	push	{r7}
+ 80004c6:	af00      	add	r7, sp, #0
+    if( listLIST_IS_EMPTY( pxDelayedTaskList ) != pdFALSE )
+ 80004c8:	4b0a      	ldr	r3, [pc, #40]	; (80004f4 <prvResetNextTaskUnblockTime+0x30>)
+ 80004ca:	681b      	ldr	r3, [r3, #0]
+ 80004cc:	681b      	ldr	r3, [r3, #0]
+ 80004ce:	2b00      	cmp	r3, #0
+ 80004d0:	d104      	bne.n	80004dc <prvResetNextTaskUnblockTime+0x18>
+    {
+        /* The new current delayed list is empty.  Set xNextTaskUnblockTime to
+         * the maximum possible value so it is  extremely unlikely that the
+         * if( xTickCount >= xNextTaskUnblockTime ) test will pass until
+         * there is an item in the delayed list. */
+        xNextTaskUnblockTime = portMAX_DELAY;
+ 80004d2:	4b09      	ldr	r3, [pc, #36]	; (80004f8 <prvResetNextTaskUnblockTime+0x34>)
+ 80004d4:	f04f 32ff 	mov.w	r2, #4294967295	; 0xffffffff
+ 80004d8:	601a      	str	r2, [r3, #0]
+         * the item at the head of the delayed list.  This is the time at
+         * which the task at the head of the delayed list should be removed
+         * from the Blocked state. */
+        xNextTaskUnblockTime = listGET_ITEM_VALUE_OF_HEAD_ENTRY( pxDelayedTaskList );
+    }
+}
+ 80004da:	e005      	b.n	80004e8 <prvResetNextTaskUnblockTime+0x24>
+        xNextTaskUnblockTime = listGET_ITEM_VALUE_OF_HEAD_ENTRY( pxDelayedTaskList );
+ 80004dc:	4b05      	ldr	r3, [pc, #20]	; (80004f4 <prvResetNextTaskUnblockTime+0x30>)
+ 80004de:	681b      	ldr	r3, [r3, #0]
+ 80004e0:	68db      	ldr	r3, [r3, #12]
+ 80004e2:	681b      	ldr	r3, [r3, #0]
+ 80004e4:	4a04      	ldr	r2, [pc, #16]	; (80004f8 <prvResetNextTaskUnblockTime+0x34>)
+ 80004e6:	6013      	str	r3, [r2, #0]
+}
+ 80004e8:	bf00      	nop
+ 80004ea:	46bd      	mov	sp, r7
+ 80004ec:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80004f0:	4770      	bx	lr
+ 80004f2:	bf00      	nop
+ 80004f4:	20000084 	.word	0x20000084
+ 80004f8:	200000a0 	.word	0x200000a0
+ 80004fc:	00000000 	.word	0x00000000
+
+08000500 <SVC_Handler>:
+}
+/*-----------------------------------------------------------*/
+
+void vPortSVCHandler( void )
+{
+    __asm volatile (
+ 8000500:	4b07      	ldr	r3, [pc, #28]	; (8000520 <pxCurrentTCBConst2>)
+ 8000502:	6819      	ldr	r1, [r3, #0]
+ 8000504:	6808      	ldr	r0, [r1, #0]
+ 8000506:	e8b0 4ff0 	ldmia.w	r0!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 800050a:	f380 8809 	msr	PSP, r0
+ 800050e:	f3bf 8f6f 	isb	sy
+ 8000512:	f04f 0000 	mov.w	r0, #0
+ 8000516:	f380 8811 	msr	BASEPRI, r0
+ 800051a:	4770      	bx	lr
+ 800051c:	f3af 8000 	nop.w
+
+08000520 <pxCurrentTCBConst2>:
+ 8000520:	2000001c 	.word	0x2000001c
+        "	bx r14							\n"
+        "									\n"
+        "	.align 4						\n"
+        "pxCurrentTCBConst2: .word pxCurrentTCB				\n"
+        );
+}
+ 8000524:	bf00      	nop
+ 8000526:	bf00      	nop
+	...
+
+08000530 <PendSV_Handler>:
+
+void xPortPendSVHandler( void )
+{
+    /* This is a naked function. */
+
+    __asm volatile
+ 8000530:	f3ef 8009 	mrs	r0, PSP
+ 8000534:	f3bf 8f6f 	isb	sy
+ 8000538:	4b15      	ldr	r3, [pc, #84]	; (8000590 <pxCurrentTCBConst>)
+ 800053a:	681a      	ldr	r2, [r3, #0]
+ 800053c:	f01e 0f10 	tst.w	lr, #16
+ 8000540:	bf08      	it	eq
+ 8000542:	ed20 8a10 	vstmdbeq	r0!, {s16-s31}
+ 8000546:	e920 4ff0 	stmdb	r0!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 800054a:	6010      	str	r0, [r2, #0]
+ 800054c:	e92d 0009 	stmdb	sp!, {r0, r3}
+ 8000550:	f04f 0050 	mov.w	r0, #80	; 0x50
+ 8000554:	f380 8811 	msr	BASEPRI, r0
+ 8000558:	f3bf 8f4f 	dsb	sy
+ 800055c:	f3bf 8f6f 	isb	sy
+ 8000560:	f7ff ff54 	bl	800040c <vTaskSwitchContext>
+ 8000564:	f04f 0000 	mov.w	r0, #0
+ 8000568:	f380 8811 	msr	BASEPRI, r0
+ 800056c:	bc09      	pop	{r0, r3}
+ 800056e:	6819      	ldr	r1, [r3, #0]
+ 8000570:	6808      	ldr	r0, [r1, #0]
+ 8000572:	e8b0 4ff0 	ldmia.w	r0!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 8000576:	f01e 0f10 	tst.w	lr, #16
+ 800057a:	bf08      	it	eq
+ 800057c:	ecb0 8a10 	vldmiaeq	r0!, {s16-s31}
+ 8000580:	f380 8809 	msr	PSP, r0
+ 8000584:	f3bf 8f6f 	isb	sy
+ 8000588:	4770      	bx	lr
+ 800058a:	bf00      	nop
+ 800058c:	f3af 8000 	nop.w
+
+08000590 <pxCurrentTCBConst>:
+ 8000590:	2000001c 	.word	0x2000001c
+        "										\n"
+        "	.align 4							\n"
+        "pxCurrentTCBConst: .word pxCurrentTCB	\n"
+        ::"i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY )
+    );
+}
+ 8000594:	bf00      	nop
+ 8000596:	bf00      	nop
+
+08000598 <SysTick_Handler>:
+/*-----------------------------------------------------------*/
+
+void xPortSysTickHandler( void )
+{
+ 8000598:	b580      	push	{r7, lr}
+ 800059a:	b082      	sub	sp, #8
+ 800059c:	af00      	add	r7, sp, #0
+        __asm volatile
+ 800059e:	f04f 0350 	mov.w	r3, #80	; 0x50
+ 80005a2:	f383 8811 	msr	BASEPRI, r3
+ 80005a6:	f3bf 8f6f 	isb	sy
+ 80005aa:	f3bf 8f4f 	dsb	sy
+ 80005ae:	607b      	str	r3, [r7, #4]
+    }
+ 80005b0:	bf00      	nop
+     * known. */
+    portDISABLE_INTERRUPTS();
+	traceISR_ENTER();
+    {
+        /* Increment the RTOS tick. */
+        if( xTaskIncrementTick() != pdFALSE )
+ 80005b2:	f7ff fe15 	bl	80001e0 <xTaskIncrementTick>
+ 80005b6:	4603      	mov	r3, r0
+ 80005b8:	2b00      	cmp	r3, #0
+ 80005ba:	d003      	beq.n	80005c4 <SysTick_Handler+0x2c>
+        {
+			traceISR_EXIT_TO_SCHEDULER();
+            /* A context switch is required.  Context switching is performed in
+             * the PendSV interrupt.  Pend the PendSV interrupt. */
+            portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
+ 80005bc:	4b06      	ldr	r3, [pc, #24]	; (80005d8 <SysTick_Handler+0x40>)
+ 80005be:	f04f 5280 	mov.w	r2, #268435456	; 0x10000000
+ 80005c2:	601a      	str	r2, [r3, #0]
+ 80005c4:	2300      	movs	r3, #0
+ 80005c6:	603b      	str	r3, [r7, #0]
+    }
+/*-----------------------------------------------------------*/
+
+    portFORCE_INLINE static void vPortSetBASEPRI( uint32_t ulNewMaskValue )
+    {
+        __asm volatile
+ 80005c8:	683b      	ldr	r3, [r7, #0]
+ 80005ca:	f383 8811 	msr	BASEPRI, r3
+        (
+            "	msr basepri, %0	"::"r" ( ulNewMaskValue ) : "memory"
+        );
+    }
+ 80005ce:	bf00      	nop
+		{
+			traceISR_EXIT();
+		}
+    }
+    portENABLE_INTERRUPTS();
+}
+ 80005d0:	bf00      	nop
+ 80005d2:	3708      	adds	r7, #8
+ 80005d4:	46bd      	mov	sp, r7
+ 80005d6:	bd80      	pop	{r7, pc}
+ 80005d8:	e000ed04 	.word	0xe000ed04
+
+080005dc <d_uart_init>:
 
 
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
 void d_uart_init(USART_TypeDef *usart){
- 80001d8:	b580      	push	{r7, lr}
- 80001da:	b082      	sub	sp, #8
- 80001dc:	af00      	add	r7, sp, #0
- 80001de:	6078      	str	r0, [r7, #4]
+ 80005dc:	b580      	push	{r7, lr}
+ 80005de:	b082      	sub	sp, #8
+ 80005e0:	af00      	add	r7, sp, #0
+ 80005e2:	6078      	str	r0, [r7, #4]
  * 		Configures related gpios for usart communication
  *		Initializes usart parameters for full duplex communication
  */
 
 	// GPIO configuration
 	if(usart == USART1){
- 80001e0:	687b      	ldr	r3, [r7, #4]
- 80001e2:	4a20      	ldr	r2, [pc, #128]	; (8000264 <d_uart_init+0x8c>)
- 80001e4:	4293      	cmp	r3, r2
- 80001e6:	d107      	bne.n	80001f8 <d_uart_init+0x20>
+ 80005e4:	687b      	ldr	r3, [r7, #4]
+ 80005e6:	4a20      	ldr	r2, [pc, #128]	; (8000668 <d_uart_init+0x8c>)
+ 80005e8:	4293      	cmp	r3, r2
+ 80005ea:	d107      	bne.n	80005fc <d_uart_init+0x20>
 
 		// Configure GPIO
 		USART1_GPIO_Init();
- 80001e8:	f000 f842 	bl	8000270 <USART1_GPIO_Init>
+ 80005ec:	f000 f842 	bl	8000674 <USART1_GPIO_Init>
 		// Enable clock access to USART1
 		RCC->APB2ENR	|= APB2ENR_USART1EN;
- 80001ec:	4b1e      	ldr	r3, [pc, #120]	; (8000268 <d_uart_init+0x90>)
- 80001ee:	6c5b      	ldr	r3, [r3, #68]	; 0x44
- 80001f0:	4a1d      	ldr	r2, [pc, #116]	; (8000268 <d_uart_init+0x90>)
- 80001f2:	f043 0310 	orr.w	r3, r3, #16
- 80001f6:	6453      	str	r3, [r2, #68]	; 0x44
+ 80005f0:	4b1e      	ldr	r3, [pc, #120]	; (800066c <d_uart_init+0x90>)
+ 80005f2:	6c5b      	ldr	r3, [r3, #68]	; 0x44
+ 80005f4:	4a1d      	ldr	r2, [pc, #116]	; (800066c <d_uart_init+0x90>)
+ 80005f6:	f043 0310 	orr.w	r3, r3, #16
+ 80005fa:	6453      	str	r3, [r2, #68]	; 0x44
 	}
 
 	// GPIO configuration
 	if(usart == USART2){
- 80001f8:	687b      	ldr	r3, [r7, #4]
- 80001fa:	4a1c      	ldr	r2, [pc, #112]	; (800026c <d_uart_init+0x94>)
- 80001fc:	4293      	cmp	r3, r2
- 80001fe:	d107      	bne.n	8000210 <d_uart_init+0x38>
+ 80005fc:	687b      	ldr	r3, [r7, #4]
+ 80005fe:	4a1c      	ldr	r2, [pc, #112]	; (8000670 <d_uart_init+0x94>)
+ 8000600:	4293      	cmp	r3, r2
+ 8000602:	d107      	bne.n	8000614 <d_uart_init+0x38>
 
 		// Configure GPIO
 		USART2_GPIO_Init();
- 8000200:	f000 f8aa 	bl	8000358 <USART2_GPIO_Init>
+ 8000604:	f000 f8aa 	bl	800075c <USART2_GPIO_Init>
 		// Enable clock access to USART2
 		RCC->APB1ENR	|= APB1ENR_USART2EN;
- 8000204:	4b18      	ldr	r3, [pc, #96]	; (8000268 <d_uart_init+0x90>)
- 8000206:	6c1b      	ldr	r3, [r3, #64]	; 0x40
- 8000208:	4a17      	ldr	r2, [pc, #92]	; (8000268 <d_uart_init+0x90>)
- 800020a:	f443 3300 	orr.w	r3, r3, #131072	; 0x20000
- 800020e:	6413      	str	r3, [r2, #64]	; 0x40
+ 8000608:	4b18      	ldr	r3, [pc, #96]	; (800066c <d_uart_init+0x90>)
+ 800060a:	6c1b      	ldr	r3, [r3, #64]	; 0x40
+ 800060c:	4a17      	ldr	r2, [pc, #92]	; (800066c <d_uart_init+0x90>)
+ 800060e:	f443 3300 	orr.w	r3, r3, #131072	; 0x20000
+ 8000612:	6413      	str	r3, [r2, #64]	; 0x40
 //	if(usart == USART6){
 //		USART6_GPIO_Init();
 //	}
 
 	// Enable the USART by writing the UE bit in USART_CR1 register to 1.
 	usart->CR1 |= CR1_UE;		//	1: USART enabled
- 8000210:	687b      	ldr	r3, [r7, #4]
- 8000212:	68db      	ldr	r3, [r3, #12]
- 8000214:	f443 5200 	orr.w	r2, r3, #8192	; 0x2000
- 8000218:	687b      	ldr	r3, [r7, #4]
- 800021a:	60da      	str	r2, [r3, #12]
+ 8000614:	687b      	ldr	r3, [r7, #4]
+ 8000616:	68db      	ldr	r3, [r3, #12]
+ 8000618:	f443 5200 	orr.w	r2, r3, #8192	; 0x2000
+ 800061c:	687b      	ldr	r3, [r7, #4]
+ 800061e:	60da      	str	r2, [r3, #12]
 
 	//	Program the M bit in USART_CR1 to define the word length.
 	usart->CR1 &= ~(CR1_M);		//	0: 1 Start bit, 8 Data bits, n Stop bit
- 800021c:	687b      	ldr	r3, [r7, #4]
- 800021e:	68db      	ldr	r3, [r3, #12]
- 8000220:	f423 5280 	bic.w	r2, r3, #4096	; 0x1000
- 8000224:	687b      	ldr	r3, [r7, #4]
- 8000226:	60da      	str	r2, [r3, #12]
+ 8000620:	687b      	ldr	r3, [r7, #4]
+ 8000622:	68db      	ldr	r3, [r3, #12]
+ 8000624:	f423 5280 	bic.w	r2, r3, #4096	; 0x1000
+ 8000628:	687b      	ldr	r3, [r7, #4]
+ 800062a:	60da      	str	r2, [r3, #12]
 
 	//	Program the number of stop bits in USART_CR2.
 	usart->CR2 &= ~(CR2_STOP);	//	00: 1 Stop bit
- 8000228:	687b      	ldr	r3, [r7, #4]
- 800022a:	691b      	ldr	r3, [r3, #16]
- 800022c:	f423 5240 	bic.w	r2, r3, #12288	; 0x3000
- 8000230:	687b      	ldr	r3, [r7, #4]
- 8000232:	611a      	str	r2, [r3, #16]
+ 800062c:	687b      	ldr	r3, [r7, #4]
+ 800062e:	691b      	ldr	r3, [r3, #16]
+ 8000630:	f423 5240 	bic.w	r2, r3, #12288	; 0x3000
+ 8000634:	687b      	ldr	r3, [r7, #4]
+ 8000636:	611a      	str	r2, [r3, #16]
 
 	// Select oversampling by programming OVER8 bit in CR1 register
 	usart->CR1 |= CR1_OVER8;	//	1: oversampling by 8
- 8000234:	687b      	ldr	r3, [r7, #4]
- 8000236:	68db      	ldr	r3, [r3, #12]
- 8000238:	f443 4200 	orr.w	r2, r3, #32768	; 0x8000
- 800023c:	687b      	ldr	r3, [r7, #4]
- 800023e:	60da      	str	r2, [r3, #12]
+ 8000638:	687b      	ldr	r3, [r7, #4]
+ 800063a:	68db      	ldr	r3, [r3, #12]
+ 800063c:	f443 4200 	orr.w	r2, r3, #32768	; 0x8000
+ 8000640:	687b      	ldr	r3, [r7, #4]
+ 8000642:	60da      	str	r2, [r3, #12]
 
 	//	 Select the desired baud rate using the USART_BRR register.
 	usart->BRR |= BRR_USARTDIV;
- 8000240:	687b      	ldr	r3, [r7, #4]
- 8000242:	689b      	ldr	r3, [r3, #8]
- 8000244:	f443 7389 	orr.w	r3, r3, #274	; 0x112
- 8000248:	f043 0301 	orr.w	r3, r3, #1
- 800024c:	687a      	ldr	r2, [r7, #4]
- 800024e:	6093      	str	r3, [r2, #8]
+ 8000644:	687b      	ldr	r3, [r7, #4]
+ 8000646:	689b      	ldr	r3, [r3, #8]
+ 8000648:	f443 7389 	orr.w	r3, r3, #274	; 0x112
+ 800064c:	f043 0301 	orr.w	r3, r3, #1
+ 8000650:	687a      	ldr	r2, [r7, #4]
+ 8000652:	6093      	str	r3, [r2, #8]
 
 	//	Set the TE bit in USART_CR1 to send an idle frame as first transmission.
 	usart->CR1 |= CR1_TE;
- 8000250:	687b      	ldr	r3, [r7, #4]
- 8000252:	68db      	ldr	r3, [r3, #12]
- 8000254:	f043 0208 	orr.w	r2, r3, #8
- 8000258:	687b      	ldr	r3, [r7, #4]
- 800025a:	60da      	str	r2, [r3, #12]
+ 8000654:	687b      	ldr	r3, [r7, #4]
+ 8000656:	68db      	ldr	r3, [r3, #12]
+ 8000658:	f043 0208 	orr.w	r2, r3, #8
+ 800065c:	687b      	ldr	r3, [r7, #4]
+ 800065e:	60da      	str	r2, [r3, #12]
 	//	When TE is set, there is a 1 bit-time delay before the transmission starts
 
 }
- 800025c:	bf00      	nop
- 800025e:	3708      	adds	r7, #8
- 8000260:	46bd      	mov	sp, r7
- 8000262:	bd80      	pop	{r7, pc}
- 8000264:	40011000 	.word	0x40011000
- 8000268:	40023800 	.word	0x40023800
- 800026c:	40004400 	.word	0x40004400
+ 8000660:	bf00      	nop
+ 8000662:	3708      	adds	r7, #8
+ 8000664:	46bd      	mov	sp, r7
+ 8000666:	bd80      	pop	{r7, pc}
+ 8000668:	40011000 	.word	0x40011000
+ 800066c:	40023800 	.word	0x40023800
+ 8000670:	40004400 	.word	0x40004400
 
-08000270 <USART1_GPIO_Init>:
+08000674 <USART1_GPIO_Init>:
 
 void USART1_GPIO_Init(void){
- 8000270:	b580      	push	{r7, lr}
- 8000272:	af00      	add	r7, sp, #0
+ 8000674:	b580      	push	{r7, lr}
+ 8000676:	af00      	add	r7, sp, #0
  * 	Description	:	Sets the gpio pins connected to USART1 for USART operation
  * 					PA9 	-> 	USART1_TX
  * 					PA10	->	USART1_RX
  */
 
 	USART1_GPIO_TX_Init();
- 8000274:	f000 f804 	bl	8000280 <USART1_GPIO_TX_Init>
+ 8000678:	f000 f804 	bl	8000684 <USART1_GPIO_TX_Init>
 
 	USART1_GPIO_RX_Init();
- 8000278:	f000 f838 	bl	80002ec <USART1_GPIO_RX_Init>
+ 800067c:	f000 f838 	bl	80006f0 <USART1_GPIO_RX_Init>
 
 
 
 }
- 800027c:	bf00      	nop
- 800027e:	bd80      	pop	{r7, pc}
+ 8000680:	bf00      	nop
+ 8000682:	bd80      	pop	{r7, pc}
 
-08000280 <USART1_GPIO_TX_Init>:
+08000684 <USART1_GPIO_TX_Init>:
 
 
 void USART1_GPIO_TX_Init(void){
- 8000280:	b480      	push	{r7}
- 8000282:	af00      	add	r7, sp, #0
+ 8000684:	b480      	push	{r7}
+ 8000686:	af00      	add	r7, sp, #0
  * 				-	Set alternate function type
  *
  */
 
 	// Enable clock access to GPIOA
 	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
- 8000284:	4b17      	ldr	r3, [pc, #92]	; (80002e4 <USART1_GPIO_TX_Init+0x64>)
- 8000286:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8000288:	4a16      	ldr	r2, [pc, #88]	; (80002e4 <USART1_GPIO_TX_Init+0x64>)
- 800028a:	f043 0301 	orr.w	r3, r3, #1
- 800028e:	6313      	str	r3, [r2, #48]	; 0x30
+ 8000688:	4b17      	ldr	r3, [pc, #92]	; (80006e8 <USART1_GPIO_TX_Init+0x64>)
+ 800068a:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 800068c:	4a16      	ldr	r2, [pc, #88]	; (80006e8 <USART1_GPIO_TX_Init+0x64>)
+ 800068e:	f043 0301 	orr.w	r3, r3, #1
+ 8000692:	6313      	str	r3, [r2, #48]	; 0x30
 
 	// Set PA9  as alternate function
 	GPIOA->MODER &= ~MODER_MODER9_0;
- 8000290:	4b15      	ldr	r3, [pc, #84]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 8000292:	681b      	ldr	r3, [r3, #0]
- 8000294:	4a14      	ldr	r2, [pc, #80]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 8000296:	f423 2380 	bic.w	r3, r3, #262144	; 0x40000
- 800029a:	6013      	str	r3, [r2, #0]
+ 8000694:	4b15      	ldr	r3, [pc, #84]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 8000696:	681b      	ldr	r3, [r3, #0]
+ 8000698:	4a14      	ldr	r2, [pc, #80]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 800069a:	f423 2380 	bic.w	r3, r3, #262144	; 0x40000
+ 800069e:	6013      	str	r3, [r2, #0]
 	GPIOA->MODER |=	 MODER_MODER9_1;
- 800029c:	4b12      	ldr	r3, [pc, #72]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 800029e:	681b      	ldr	r3, [r3, #0]
- 80002a0:	4a11      	ldr	r2, [pc, #68]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002a2:	f443 2300 	orr.w	r3, r3, #524288	; 0x80000
- 80002a6:	6013      	str	r3, [r2, #0]
+ 80006a0:	4b12      	ldr	r3, [pc, #72]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006a2:	681b      	ldr	r3, [r3, #0]
+ 80006a4:	4a11      	ldr	r2, [pc, #68]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006a6:	f443 2300 	orr.w	r3, r3, #524288	; 0x80000
+ 80006aa:	6013      	str	r3, [r2, #0]
 
 	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
 	(GPIOA->AFR)[1] |=	AFRH_9_0;
- 80002a8:	4b0f      	ldr	r3, [pc, #60]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002aa:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 80002ac:	4a0e      	ldr	r2, [pc, #56]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002ae:	f043 0310 	orr.w	r3, r3, #16
- 80002b2:	6253      	str	r3, [r2, #36]	; 0x24
+ 80006ac:	4b0f      	ldr	r3, [pc, #60]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006ae:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80006b0:	4a0e      	ldr	r2, [pc, #56]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006b2:	f043 0310 	orr.w	r3, r3, #16
+ 80006b6:	6253      	str	r3, [r2, #36]	; 0x24
 	(GPIOA->AFR)[1] |=	AFRH_9_1;
- 80002b4:	4b0c      	ldr	r3, [pc, #48]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002b6:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 80002b8:	4a0b      	ldr	r2, [pc, #44]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002ba:	f043 0320 	orr.w	r3, r3, #32
- 80002be:	6253      	str	r3, [r2, #36]	; 0x24
+ 80006b8:	4b0c      	ldr	r3, [pc, #48]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006ba:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80006bc:	4a0b      	ldr	r2, [pc, #44]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006be:	f043 0320 	orr.w	r3, r3, #32
+ 80006c2:	6253      	str	r3, [r2, #36]	; 0x24
 	(GPIOA->AFR)[1] |=	AFRH_9_2;
- 80002c0:	4b09      	ldr	r3, [pc, #36]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002c2:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 80002c4:	4a08      	ldr	r2, [pc, #32]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002c6:	f043 0340 	orr.w	r3, r3, #64	; 0x40
- 80002ca:	6253      	str	r3, [r2, #36]	; 0x24
+ 80006c4:	4b09      	ldr	r3, [pc, #36]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006c6:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80006c8:	4a08      	ldr	r2, [pc, #32]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006ca:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+ 80006ce:	6253      	str	r3, [r2, #36]	; 0x24
 	(GPIOA->AFR)[1] &=	~AFRH_9_3;
- 80002cc:	4b06      	ldr	r3, [pc, #24]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002ce:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 80002d0:	4a05      	ldr	r2, [pc, #20]	; (80002e8 <USART1_GPIO_TX_Init+0x68>)
- 80002d2:	f023 0380 	bic.w	r3, r3, #128	; 0x80
- 80002d6:	6253      	str	r3, [r2, #36]	; 0x24
+ 80006d0:	4b06      	ldr	r3, [pc, #24]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006d2:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80006d4:	4a05      	ldr	r2, [pc, #20]	; (80006ec <USART1_GPIO_TX_Init+0x68>)
+ 80006d6:	f023 0380 	bic.w	r3, r3, #128	; 0x80
+ 80006da:	6253      	str	r3, [r2, #36]	; 0x24
 }
- 80002d8:	bf00      	nop
- 80002da:	46bd      	mov	sp, r7
- 80002dc:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80002e0:	4770      	bx	lr
- 80002e2:	bf00      	nop
- 80002e4:	40023800 	.word	0x40023800
- 80002e8:	40020000 	.word	0x40020000
+ 80006dc:	bf00      	nop
+ 80006de:	46bd      	mov	sp, r7
+ 80006e0:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80006e4:	4770      	bx	lr
+ 80006e6:	bf00      	nop
+ 80006e8:	40023800 	.word	0x40023800
+ 80006ec:	40020000 	.word	0x40020000
 
-080002ec <USART1_GPIO_RX_Init>:
+080006f0 <USART1_GPIO_RX_Init>:
 
 
 void USART1_GPIO_RX_Init(void){
- 80002ec:	b480      	push	{r7}
- 80002ee:	af00      	add	r7, sp, #0
+ 80006f0:	b480      	push	{r7}
+ 80006f2:	af00      	add	r7, sp, #0
  * 				-	Set alternate function type
  *
  */
 
 	// Enable clock access to GPIOA
 	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
- 80002f0:	4b17      	ldr	r3, [pc, #92]	; (8000350 <USART1_GPIO_RX_Init+0x64>)
- 80002f2:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80002f4:	4a16      	ldr	r2, [pc, #88]	; (8000350 <USART1_GPIO_RX_Init+0x64>)
- 80002f6:	f043 0301 	orr.w	r3, r3, #1
- 80002fa:	6313      	str	r3, [r2, #48]	; 0x30
+ 80006f4:	4b17      	ldr	r3, [pc, #92]	; (8000754 <USART1_GPIO_RX_Init+0x64>)
+ 80006f6:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80006f8:	4a16      	ldr	r2, [pc, #88]	; (8000754 <USART1_GPIO_RX_Init+0x64>)
+ 80006fa:	f043 0301 	orr.w	r3, r3, #1
+ 80006fe:	6313      	str	r3, [r2, #48]	; 0x30
 
 	//	Set PA10 mode as alternate function
 	GPIOA->MODER &= ~MODER_MODER10_0;
- 80002fc:	4b15      	ldr	r3, [pc, #84]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 80002fe:	681b      	ldr	r3, [r3, #0]
- 8000300:	4a14      	ldr	r2, [pc, #80]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 8000302:	f423 1380 	bic.w	r3, r3, #1048576	; 0x100000
- 8000306:	6013      	str	r3, [r2, #0]
+ 8000700:	4b15      	ldr	r3, [pc, #84]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000702:	681b      	ldr	r3, [r3, #0]
+ 8000704:	4a14      	ldr	r2, [pc, #80]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000706:	f423 1380 	bic.w	r3, r3, #1048576	; 0x100000
+ 800070a:	6013      	str	r3, [r2, #0]
 	GPIOA->MODER |=	 MODER_MODER10_1;
- 8000308:	4b12      	ldr	r3, [pc, #72]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 800030a:	681b      	ldr	r3, [r3, #0]
- 800030c:	4a11      	ldr	r2, [pc, #68]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 800030e:	f443 1300 	orr.w	r3, r3, #2097152	; 0x200000
- 8000312:	6013      	str	r3, [r2, #0]
+ 800070c:	4b12      	ldr	r3, [pc, #72]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 800070e:	681b      	ldr	r3, [r3, #0]
+ 8000710:	4a11      	ldr	r2, [pc, #68]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000712:	f443 1300 	orr.w	r3, r3, #2097152	; 0x200000
+ 8000716:	6013      	str	r3, [r2, #0]
 
 	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
 	(GPIOA->AFR)[1] |=	AFRH_10_0;
- 8000314:	4b0f      	ldr	r3, [pc, #60]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 8000316:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 8000318:	4a0e      	ldr	r2, [pc, #56]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 800031a:	f443 7380 	orr.w	r3, r3, #256	; 0x100
- 800031e:	6253      	str	r3, [r2, #36]	; 0x24
+ 8000718:	4b0f      	ldr	r3, [pc, #60]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 800071a:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 800071c:	4a0e      	ldr	r2, [pc, #56]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 800071e:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 8000722:	6253      	str	r3, [r2, #36]	; 0x24
 	(GPIOA->AFR)[1] |=	AFRH_10_1;
- 8000320:	4b0c      	ldr	r3, [pc, #48]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 8000322:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 8000324:	4a0b      	ldr	r2, [pc, #44]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 8000326:	f443 7300 	orr.w	r3, r3, #512	; 0x200
- 800032a:	6253      	str	r3, [r2, #36]	; 0x24
+ 8000724:	4b0c      	ldr	r3, [pc, #48]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000726:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 8000728:	4a0b      	ldr	r2, [pc, #44]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 800072a:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 800072e:	6253      	str	r3, [r2, #36]	; 0x24
 	(GPIOA->AFR)[1] |=	AFRH_10_2;
- 800032c:	4b09      	ldr	r3, [pc, #36]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 800032e:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 8000330:	4a08      	ldr	r2, [pc, #32]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 8000332:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
- 8000336:	6253      	str	r3, [r2, #36]	; 0x24
+ 8000730:	4b09      	ldr	r3, [pc, #36]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000732:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 8000734:	4a08      	ldr	r2, [pc, #32]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000736:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 800073a:	6253      	str	r3, [r2, #36]	; 0x24
 	(GPIOA->AFR)[1] &=	~AFRH_10_3;
- 8000338:	4b06      	ldr	r3, [pc, #24]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 800033a:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 800033c:	4a05      	ldr	r2, [pc, #20]	; (8000354 <USART1_GPIO_RX_Init+0x68>)
- 800033e:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
- 8000342:	6253      	str	r3, [r2, #36]	; 0x24
+ 800073c:	4b06      	ldr	r3, [pc, #24]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 800073e:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 8000740:	4a05      	ldr	r2, [pc, #20]	; (8000758 <USART1_GPIO_RX_Init+0x68>)
+ 8000742:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+ 8000746:	6253      	str	r3, [r2, #36]	; 0x24
 }
- 8000344:	bf00      	nop
- 8000346:	46bd      	mov	sp, r7
- 8000348:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800034c:	4770      	bx	lr
- 800034e:	bf00      	nop
- 8000350:	40023800 	.word	0x40023800
- 8000354:	40020000 	.word	0x40020000
+ 8000748:	bf00      	nop
+ 800074a:	46bd      	mov	sp, r7
+ 800074c:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000750:	4770      	bx	lr
+ 8000752:	bf00      	nop
+ 8000754:	40023800 	.word	0x40023800
+ 8000758:	40020000 	.word	0x40020000
 
-08000358 <USART2_GPIO_Init>:
+0800075c <USART2_GPIO_Init>:
 
 
 void USART2_GPIO_Init(void){
- 8000358:	b580      	push	{r7, lr}
- 800035a:	af00      	add	r7, sp, #0
+ 800075c:	b580      	push	{r7, lr}
+ 800075e:	af00      	add	r7, sp, #0
  * 	Description	:	Sets the gpio pins connected to USART2 for USART operation
  * 					PA2 	-> 	USART2_TX
  * 					PA3		->	USART2_RX
  */
 
 	USART2_GPIO_TX_Init();
- 800035c:	f000 f804 	bl	8000368 <USART2_GPIO_TX_Init>
+ 8000760:	f000 f804 	bl	800076c <USART2_GPIO_TX_Init>
 
 	USART2_GPIO_RX_Init();
- 8000360:	f000 f838 	bl	80003d4 <USART2_GPIO_RX_Init>
+ 8000764:	f000 f838 	bl	80007d8 <USART2_GPIO_RX_Init>
 
 
 
 }
- 8000364:	bf00      	nop
- 8000366:	bd80      	pop	{r7, pc}
+ 8000768:	bf00      	nop
+ 800076a:	bd80      	pop	{r7, pc}
 
-08000368 <USART2_GPIO_TX_Init>:
+0800076c <USART2_GPIO_TX_Init>:
 
 void USART2_GPIO_TX_Init(void){
- 8000368:	b480      	push	{r7}
- 800036a:	af00      	add	r7, sp, #0
+ 800076c:	b480      	push	{r7}
+ 800076e:	af00      	add	r7, sp, #0
  * 				-	Set alternate function type
  *
  */
 
 	// Enable clock access to GPIOA
 	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
- 800036c:	4b17      	ldr	r3, [pc, #92]	; (80003cc <USART2_GPIO_TX_Init+0x64>)
- 800036e:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 8000370:	4a16      	ldr	r2, [pc, #88]	; (80003cc <USART2_GPIO_TX_Init+0x64>)
- 8000372:	f043 0301 	orr.w	r3, r3, #1
- 8000376:	6313      	str	r3, [r2, #48]	; 0x30
+ 8000770:	4b17      	ldr	r3, [pc, #92]	; (80007d0 <USART2_GPIO_TX_Init+0x64>)
+ 8000772:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 8000774:	4a16      	ldr	r2, [pc, #88]	; (80007d0 <USART2_GPIO_TX_Init+0x64>)
+ 8000776:	f043 0301 	orr.w	r3, r3, #1
+ 800077a:	6313      	str	r3, [r2, #48]	; 0x30
 
 	// Set PA2  as alternate function
 	GPIOA->MODER &= ~MODER_MODER2_0;
- 8000378:	4b15      	ldr	r3, [pc, #84]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 800037a:	681b      	ldr	r3, [r3, #0]
- 800037c:	4a14      	ldr	r2, [pc, #80]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 800037e:	f023 0310 	bic.w	r3, r3, #16
- 8000382:	6013      	str	r3, [r2, #0]
+ 800077c:	4b15      	ldr	r3, [pc, #84]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 800077e:	681b      	ldr	r3, [r3, #0]
+ 8000780:	4a14      	ldr	r2, [pc, #80]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 8000782:	f023 0310 	bic.w	r3, r3, #16
+ 8000786:	6013      	str	r3, [r2, #0]
 	GPIOA->MODER |=	 MODER_MODER2_1;
- 8000384:	4b12      	ldr	r3, [pc, #72]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 8000386:	681b      	ldr	r3, [r3, #0]
- 8000388:	4a11      	ldr	r2, [pc, #68]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 800038a:	f043 0320 	orr.w	r3, r3, #32
- 800038e:	6013      	str	r3, [r2, #0]
+ 8000788:	4b12      	ldr	r3, [pc, #72]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 800078a:	681b      	ldr	r3, [r3, #0]
+ 800078c:	4a11      	ldr	r2, [pc, #68]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 800078e:	f043 0320 	orr.w	r3, r3, #32
+ 8000792:	6013      	str	r3, [r2, #0]
 
 	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
 	(GPIOA->AFR)[0] |=	AFRL_2_0;
- 8000390:	4b0f      	ldr	r3, [pc, #60]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 8000392:	6a1b      	ldr	r3, [r3, #32]
- 8000394:	4a0e      	ldr	r2, [pc, #56]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 8000396:	f443 7380 	orr.w	r3, r3, #256	; 0x100
- 800039a:	6213      	str	r3, [r2, #32]
+ 8000794:	4b0f      	ldr	r3, [pc, #60]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 8000796:	6a1b      	ldr	r3, [r3, #32]
+ 8000798:	4a0e      	ldr	r2, [pc, #56]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 800079a:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 800079e:	6213      	str	r3, [r2, #32]
 	(GPIOA->AFR)[0] |=	AFRL_2_1;
- 800039c:	4b0c      	ldr	r3, [pc, #48]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 800039e:	6a1b      	ldr	r3, [r3, #32]
- 80003a0:	4a0b      	ldr	r2, [pc, #44]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 80003a2:	f443 7300 	orr.w	r3, r3, #512	; 0x200
- 80003a6:	6213      	str	r3, [r2, #32]
+ 80007a0:	4b0c      	ldr	r3, [pc, #48]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 80007a2:	6a1b      	ldr	r3, [r3, #32]
+ 80007a4:	4a0b      	ldr	r2, [pc, #44]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 80007a6:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 80007aa:	6213      	str	r3, [r2, #32]
 	(GPIOA->AFR)[0] |=	AFRL_2_2;
- 80003a8:	4b09      	ldr	r3, [pc, #36]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 80003aa:	6a1b      	ldr	r3, [r3, #32]
- 80003ac:	4a08      	ldr	r2, [pc, #32]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 80003ae:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
- 80003b2:	6213      	str	r3, [r2, #32]
+ 80007ac:	4b09      	ldr	r3, [pc, #36]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 80007ae:	6a1b      	ldr	r3, [r3, #32]
+ 80007b0:	4a08      	ldr	r2, [pc, #32]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 80007b2:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 80007b6:	6213      	str	r3, [r2, #32]
 	(GPIOA->AFR)[0] &=	~AFRL_2_3;
- 80003b4:	4b06      	ldr	r3, [pc, #24]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 80003b6:	6a1b      	ldr	r3, [r3, #32]
- 80003b8:	4a05      	ldr	r2, [pc, #20]	; (80003d0 <USART2_GPIO_TX_Init+0x68>)
- 80003ba:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
- 80003be:	6213      	str	r3, [r2, #32]
+ 80007b8:	4b06      	ldr	r3, [pc, #24]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 80007ba:	6a1b      	ldr	r3, [r3, #32]
+ 80007bc:	4a05      	ldr	r2, [pc, #20]	; (80007d4 <USART2_GPIO_TX_Init+0x68>)
+ 80007be:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+ 80007c2:	6213      	str	r3, [r2, #32]
 }
- 80003c0:	bf00      	nop
- 80003c2:	46bd      	mov	sp, r7
- 80003c4:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80003c8:	4770      	bx	lr
- 80003ca:	bf00      	nop
- 80003cc:	40023800 	.word	0x40023800
- 80003d0:	40020000 	.word	0x40020000
+ 80007c4:	bf00      	nop
+ 80007c6:	46bd      	mov	sp, r7
+ 80007c8:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80007cc:	4770      	bx	lr
+ 80007ce:	bf00      	nop
+ 80007d0:	40023800 	.word	0x40023800
+ 80007d4:	40020000 	.word	0x40020000
 
-080003d4 <USART2_GPIO_RX_Init>:
+080007d8 <USART2_GPIO_RX_Init>:
 
 
 void USART2_GPIO_RX_Init(void){
- 80003d4:	b480      	push	{r7}
- 80003d6:	af00      	add	r7, sp, #0
+ 80007d8:	b480      	push	{r7}
+ 80007da:	af00      	add	r7, sp, #0
  * 				-	Set alternate function type
  *
  */
 
 	// Enable clock access to GPIOA
 	RCC->AHB1ENR |= AHB1ENR_GPIOAEN;
- 80003d8:	4b17      	ldr	r3, [pc, #92]	; (8000438 <USART2_GPIO_RX_Init+0x64>)
- 80003da:	6b1b      	ldr	r3, [r3, #48]	; 0x30
- 80003dc:	4a16      	ldr	r2, [pc, #88]	; (8000438 <USART2_GPIO_RX_Init+0x64>)
- 80003de:	f043 0301 	orr.w	r3, r3, #1
- 80003e2:	6313      	str	r3, [r2, #48]	; 0x30
+ 80007dc:	4b17      	ldr	r3, [pc, #92]	; (800083c <USART2_GPIO_RX_Init+0x64>)
+ 80007de:	6b1b      	ldr	r3, [r3, #48]	; 0x30
+ 80007e0:	4a16      	ldr	r2, [pc, #88]	; (800083c <USART2_GPIO_RX_Init+0x64>)
+ 80007e2:	f043 0301 	orr.w	r3, r3, #1
+ 80007e6:	6313      	str	r3, [r2, #48]	; 0x30
 
 	//	Set PA3 mode as alternate function
 	GPIOA->MODER &= ~MODER_MODER3_0;
- 80003e4:	4b15      	ldr	r3, [pc, #84]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 80003e6:	681b      	ldr	r3, [r3, #0]
- 80003e8:	4a14      	ldr	r2, [pc, #80]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 80003ea:	f023 0340 	bic.w	r3, r3, #64	; 0x40
- 80003ee:	6013      	str	r3, [r2, #0]
+ 80007e8:	4b15      	ldr	r3, [pc, #84]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 80007ea:	681b      	ldr	r3, [r3, #0]
+ 80007ec:	4a14      	ldr	r2, [pc, #80]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 80007ee:	f023 0340 	bic.w	r3, r3, #64	; 0x40
+ 80007f2:	6013      	str	r3, [r2, #0]
 	GPIOA->MODER |=	 MODER_MODER3_1;
- 80003f0:	4b12      	ldr	r3, [pc, #72]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 80003f2:	681b      	ldr	r3, [r3, #0]
- 80003f4:	4a11      	ldr	r2, [pc, #68]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 80003f6:	f043 0380 	orr.w	r3, r3, #128	; 0x80
- 80003fa:	6013      	str	r3, [r2, #0]
+ 80007f4:	4b12      	ldr	r3, [pc, #72]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 80007f6:	681b      	ldr	r3, [r3, #0]
+ 80007f8:	4a11      	ldr	r2, [pc, #68]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 80007fa:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+ 80007fe:	6013      	str	r3, [r2, #0]
 
 	// Set alternate function type as AF07 = 0b0111 using AFRH register(See datasheet)
 	(GPIOA->AFR)[0] |=	AFRL_3_0;
- 80003fc:	4b0f      	ldr	r3, [pc, #60]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 80003fe:	6a1b      	ldr	r3, [r3, #32]
- 8000400:	4a0e      	ldr	r2, [pc, #56]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 8000402:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
- 8000406:	6213      	str	r3, [r2, #32]
+ 8000800:	4b0f      	ldr	r3, [pc, #60]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 8000802:	6a1b      	ldr	r3, [r3, #32]
+ 8000804:	4a0e      	ldr	r2, [pc, #56]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 8000806:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+ 800080a:	6213      	str	r3, [r2, #32]
 	(GPIOA->AFR)[0] |=	AFRL_3_1;
- 8000408:	4b0c      	ldr	r3, [pc, #48]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 800040a:	6a1b      	ldr	r3, [r3, #32]
- 800040c:	4a0b      	ldr	r2, [pc, #44]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 800040e:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
- 8000412:	6213      	str	r3, [r2, #32]
+ 800080c:	4b0c      	ldr	r3, [pc, #48]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 800080e:	6a1b      	ldr	r3, [r3, #32]
+ 8000810:	4a0b      	ldr	r2, [pc, #44]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 8000812:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+ 8000816:	6213      	str	r3, [r2, #32]
 	(GPIOA->AFR)[0] |=	AFRL_3_2;
- 8000414:	4b09      	ldr	r3, [pc, #36]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 8000416:	6a1b      	ldr	r3, [r3, #32]
- 8000418:	4a08      	ldr	r2, [pc, #32]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 800041a:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
- 800041e:	6213      	str	r3, [r2, #32]
+ 8000818:	4b09      	ldr	r3, [pc, #36]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 800081a:	6a1b      	ldr	r3, [r3, #32]
+ 800081c:	4a08      	ldr	r2, [pc, #32]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 800081e:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+ 8000822:	6213      	str	r3, [r2, #32]
 	(GPIOA->AFR)[0] &=	~AFRL_3_3;
- 8000420:	4b06      	ldr	r3, [pc, #24]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 8000422:	6a1b      	ldr	r3, [r3, #32]
- 8000424:	4a05      	ldr	r2, [pc, #20]	; (800043c <USART2_GPIO_RX_Init+0x68>)
- 8000426:	f423 4300 	bic.w	r3, r3, #32768	; 0x8000
- 800042a:	6213      	str	r3, [r2, #32]
+ 8000824:	4b06      	ldr	r3, [pc, #24]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 8000826:	6a1b      	ldr	r3, [r3, #32]
+ 8000828:	4a05      	ldr	r2, [pc, #20]	; (8000840 <USART2_GPIO_RX_Init+0x68>)
+ 800082a:	f423 4300 	bic.w	r3, r3, #32768	; 0x8000
+ 800082e:	6213      	str	r3, [r2, #32]
 }
- 800042c:	bf00      	nop
- 800042e:	46bd      	mov	sp, r7
- 8000430:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000434:	4770      	bx	lr
- 8000436:	bf00      	nop
- 8000438:	40023800 	.word	0x40023800
- 800043c:	40020000 	.word	0x40020000
+ 8000830:	bf00      	nop
+ 8000832:	46bd      	mov	sp, r7
+ 8000834:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000838:	4770      	bx	lr
+ 800083a:	bf00      	nop
+ 800083c:	40023800 	.word	0x40023800
+ 8000840:	40020000 	.word	0x40020000
 
-08000440 <main>:
+08000844 <__NVIC_SetPriorityGrouping>:
+           In case of a conflict between priority grouping and available
+           priority bits (__NVIC_PRIO_BITS), the smallest possible priority group is set.
+  \param [in]      PriorityGroup  Priority grouping field.
+ */
+__STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+{
+ 8000844:	b480      	push	{r7}
+ 8000846:	b085      	sub	sp, #20
+ 8000848:	af00      	add	r7, sp, #0
+ 800084a:	6078      	str	r0, [r7, #4]
+  uint32_t reg_value;
+  uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);             /* only values 0..7 are used          */
+ 800084c:	687b      	ldr	r3, [r7, #4]
+ 800084e:	f003 0307 	and.w	r3, r3, #7
+ 8000852:	60fb      	str	r3, [r7, #12]
+
+  reg_value  =  SCB->AIRCR;                                                   /* read old register configuration    */
+ 8000854:	4b0c      	ldr	r3, [pc, #48]	; (8000888 <__NVIC_SetPriorityGrouping+0x44>)
+ 8000856:	68db      	ldr	r3, [r3, #12]
+ 8000858:	60bb      	str	r3, [r7, #8]
+  reg_value &= ~((uint32_t)(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk)); /* clear bits to change               */
+ 800085a:	68ba      	ldr	r2, [r7, #8]
+ 800085c:	f64f 03ff 	movw	r3, #63743	; 0xf8ff
+ 8000860:	4013      	ands	r3, r2
+ 8000862:	60bb      	str	r3, [r7, #8]
+  reg_value  =  (reg_value                                   |
+                ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
+                (PriorityGroupTmp << SCB_AIRCR_PRIGROUP_Pos)  );              /* Insert write key and priority group */
+ 8000864:	68fb      	ldr	r3, [r7, #12]
+ 8000866:	021a      	lsls	r2, r3, #8
+                ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
+ 8000868:	68bb      	ldr	r3, [r7, #8]
+ 800086a:	4313      	orrs	r3, r2
+  reg_value  =  (reg_value                                   |
+ 800086c:	f043 63bf 	orr.w	r3, r3, #100139008	; 0x5f80000
+ 8000870:	f443 3300 	orr.w	r3, r3, #131072	; 0x20000
+ 8000874:	60bb      	str	r3, [r7, #8]
+  SCB->AIRCR =  reg_value;
+ 8000876:	4a04      	ldr	r2, [pc, #16]	; (8000888 <__NVIC_SetPriorityGrouping+0x44>)
+ 8000878:	68bb      	ldr	r3, [r7, #8]
+ 800087a:	60d3      	str	r3, [r2, #12]
+}
+ 800087c:	bf00      	nop
+ 800087e:	3714      	adds	r7, #20
+ 8000880:	46bd      	mov	sp, r7
+ 8000882:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000886:	4770      	bx	lr
+ 8000888:	e000ed00 	.word	0xe000ed00
+
+0800088c <main>:
 *******************************************************************************/
 void a_init(void);
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
 int  main(void){
- 8000440:	b580      	push	{r7, lr}
- 8000442:	b082      	sub	sp, #8
- 8000444:	af00      	add	r7, sp, #0
+ 800088c:	b580      	push	{r7, lr}
+ 800088e:	b082      	sub	sp, #8
+ 8000890:	af00      	add	r7, sp, #0
 	// Initialize everything in the application
 	a_init();
- 8000446:	f000 f813 	bl	8000470 <a_init>
+ 8000892:	f000 f813 	bl	80008bc <a_init>
 
 	// create tasks for processing different commands
 
 	// Start the scheduler
 
 	uint32_t count = 49;
- 800044a:	2331      	movs	r3, #49	; 0x31
- 800044c:	603b      	str	r3, [r7, #0]
+ 8000896:	2331      	movs	r3, #49	; 0x31
+ 8000898:	603b      	str	r3, [r7, #0]
 	while(1){
 		// Code should never come here with FreeRTOS
 		USART2->DR = count;
- 800044e:	4a07      	ldr	r2, [pc, #28]	; (800046c <main+0x2c>)
- 8000450:	683b      	ldr	r3, [r7, #0]
- 8000452:	6053      	str	r3, [r2, #4]
+ 800089a:	4a07      	ldr	r2, [pc, #28]	; (80008b8 <main+0x2c>)
+ 800089c:	683b      	ldr	r3, [r7, #0]
+ 800089e:	6053      	str	r3, [r2, #4]
 		for(int i = 0; i < 3000; i++){
- 8000454:	2300      	movs	r3, #0
- 8000456:	607b      	str	r3, [r7, #4]
- 8000458:	e002      	b.n	8000460 <main+0x20>
- 800045a:	687b      	ldr	r3, [r7, #4]
- 800045c:	3301      	adds	r3, #1
- 800045e:	607b      	str	r3, [r7, #4]
- 8000460:	687b      	ldr	r3, [r7, #4]
- 8000462:	f640 32b7 	movw	r2, #2999	; 0xbb7
- 8000466:	4293      	cmp	r3, r2
- 8000468:	ddf7      	ble.n	800045a <main+0x1a>
+ 80008a0:	2300      	movs	r3, #0
+ 80008a2:	607b      	str	r3, [r7, #4]
+ 80008a4:	e002      	b.n	80008ac <main+0x20>
+ 80008a6:	687b      	ldr	r3, [r7, #4]
+ 80008a8:	3301      	adds	r3, #1
+ 80008aa:	607b      	str	r3, [r7, #4]
+ 80008ac:	687b      	ldr	r3, [r7, #4]
+ 80008ae:	f640 32b7 	movw	r2, #2999	; 0xbb7
+ 80008b2:	4293      	cmp	r3, r2
+ 80008b4:	ddf7      	ble.n	80008a6 <main+0x1a>
 		USART2->DR = count;
- 800046a:	e7f0      	b.n	800044e <main+0xe>
- 800046c:	40004400 	.word	0x40004400
+ 80008b6:	e7f0      	b.n	800089a <main+0xe>
+ 80008b8:	40004400 	.word	0x40004400
 
-08000470 <a_init>:
+080008bc <a_init>:
 	}
 
 }
 
 
 void a_init(void){
- 8000470:	b580      	push	{r7, lr}
- 8000472:	af00      	add	r7, sp, #0
-* 	Output		:	All peripherals initialized
-* 	Description	:
-*		Initializes the application variables and all peripherals used
-*/
+ 80008bc:	b580      	push	{r7, lr}
+ 80008be:	af00      	add	r7, sp, #0
+//	Description	:
+//		Initializes the application variables and all peripherals used
+//=============================================================================
+
+	// Set NVIC priority for freertos. This setting was recommended in Fastbit course
+	NVIC_SetPriorityGrouping((uint32_t)NVIC_PRIORITYGROUP_4);
+ 80008c0:	2003      	movs	r0, #3
+ 80008c2:	f7ff ffbf 	bl	8000844 <__NVIC_SetPriorityGrouping>
 
 	d_uart_init(USART2);
- 8000474:	4802      	ldr	r0, [pc, #8]	; (8000480 <a_init+0x10>)
- 8000476:	f7ff feaf 	bl	80001d8 <d_uart_init>
+ 80008c6:	4802      	ldr	r0, [pc, #8]	; (80008d0 <a_init+0x14>)
+ 80008c8:	f7ff fe88 	bl	80005dc <d_uart_init>
 
 
 }
- 800047a:	bf00      	nop
- 800047c:	bd80      	pop	{r7, pc}
- 800047e:	bf00      	nop
- 8000480:	40004400 	.word	0x40004400
+ 80008cc:	bf00      	nop
+ 80008ce:	bd80      	pop	{r7, pc}
+ 80008d0:	40004400 	.word	0x40004400
 
-08000484 <Reset_Handler>:
+080008d4 <NMI_Handler>:
+/******************************************************************************/
+/**
+  * @brief This function handles Non maskable interrupt.
+  */
+void NMI_Handler(void)
+{
+ 80008d4:	b480      	push	{r7}
+ 80008d6:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+
+  /* USER CODE END NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  while (1)
+ 80008d8:	e7fe      	b.n	80008d8 <NMI_Handler+0x4>
+
+080008da <HardFault_Handler>:
+
+/**
+  * @brief This function handles Hard fault interrupt.
+  */
+void HardFault_Handler(void)
+{
+ 80008da:	b480      	push	{r7}
+ 80008dc:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN HardFault_IRQn 0 */
+
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
+ 80008de:	e7fe      	b.n	80008de <HardFault_Handler+0x4>
+
+080008e0 <MemManage_Handler>:
+
+/**
+  * @brief This function handles Memory management fault.
+  */
+void MemManage_Handler(void)
+{
+ 80008e0:	b480      	push	{r7}
+ 80008e2:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+
+  /* USER CODE END MemoryManagement_IRQn 0 */
+  while (1)
+ 80008e4:	e7fe      	b.n	80008e4 <MemManage_Handler+0x4>
+
+080008e6 <BusFault_Handler>:
+
+/**
+  * @brief This function handles Pre-fetch fault, memory access fault.
+  */
+void BusFault_Handler(void)
+{
+ 80008e6:	b480      	push	{r7}
+ 80008e8:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN BusFault_IRQn 0 */
+
+  /* USER CODE END BusFault_IRQn 0 */
+  while (1)
+ 80008ea:	e7fe      	b.n	80008ea <BusFault_Handler+0x4>
+
+080008ec <UsageFault_Handler>:
+
+/**
+  * @brief This function handles Undefined instruction or illegal state.
+  */
+void UsageFault_Handler(void)
+{
+ 80008ec:	b480      	push	{r7}
+ 80008ee:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN UsageFault_IRQn 0 */
+
+  /* USER CODE END UsageFault_IRQn 0 */
+  while (1)
+ 80008f0:	e7fe      	b.n	80008f0 <UsageFault_Handler+0x4>
+
+080008f2 <DebugMon_Handler>:
+
+/**
+  * @brief This function handles Debug monitor.
+  */
+void DebugMon_Handler(void)
+{
+ 80008f2:	b480      	push	{r7}
+ 80008f4:	af00      	add	r7, sp, #0
+
+  /* USER CODE END DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+
+  /* USER CODE END DebugMonitor_IRQn 1 */
+}
+ 80008f6:	bf00      	nop
+ 80008f8:	46bd      	mov	sp, r7
+ 80008fa:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80008fe:	4770      	bx	lr
+
+08000900 <Reset_Handler>:
 
   .section .text.Reset_Handler
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
   ldr   r0, =_estack
- 8000484:	480d      	ldr	r0, [pc, #52]	; (80004bc <LoopForever+0x2>)
+ 8000900:	480d      	ldr	r0, [pc, #52]	; (8000938 <LoopForever+0x2>)
   mov   sp, r0          /* set stack pointer */
- 8000486:	4685      	mov	sp, r0
+ 8000902:	4685      	mov	sp, r0
 /* Call the clock system initialization function.*/
   bl  SystemInit
- 8000488:	f3af 8000 	nop.w
+ 8000904:	f3af 8000 	nop.w
 
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
- 800048c:	480c      	ldr	r0, [pc, #48]	; (80004c0 <LoopForever+0x6>)
+ 8000908:	480c      	ldr	r0, [pc, #48]	; (800093c <LoopForever+0x6>)
   ldr r1, =_edata
- 800048e:	490d      	ldr	r1, [pc, #52]	; (80004c4 <LoopForever+0xa>)
+ 800090a:	490d      	ldr	r1, [pc, #52]	; (8000940 <LoopForever+0xa>)
   ldr r2, =_sidata
- 8000490:	4a0d      	ldr	r2, [pc, #52]	; (80004c8 <LoopForever+0xe>)
+ 800090c:	4a0d      	ldr	r2, [pc, #52]	; (8000944 <LoopForever+0xe>)
   movs r3, #0
- 8000492:	2300      	movs	r3, #0
+ 800090e:	2300      	movs	r3, #0
   b LoopCopyDataInit
- 8000494:	e002      	b.n	800049c <LoopCopyDataInit>
+ 8000910:	e002      	b.n	8000918 <LoopCopyDataInit>
 
-08000496 <CopyDataInit>:
+08000912 <CopyDataInit>:
 
 CopyDataInit:
   ldr r4, [r2, r3]
- 8000496:	58d4      	ldr	r4, [r2, r3]
+ 8000912:	58d4      	ldr	r4, [r2, r3]
   str r4, [r0, r3]
- 8000498:	50c4      	str	r4, [r0, r3]
+ 8000914:	50c4      	str	r4, [r0, r3]
   adds r3, r3, #4
- 800049a:	3304      	adds	r3, #4
+ 8000916:	3304      	adds	r3, #4
 
-0800049c <LoopCopyDataInit>:
+08000918 <LoopCopyDataInit>:
 
 LoopCopyDataInit:
   adds r4, r0, r3
- 800049c:	18c4      	adds	r4, r0, r3
+ 8000918:	18c4      	adds	r4, r0, r3
   cmp r4, r1
- 800049e:	428c      	cmp	r4, r1
+ 800091a:	428c      	cmp	r4, r1
   bcc CopyDataInit
- 80004a0:	d3f9      	bcc.n	8000496 <CopyDataInit>
+ 800091c:	d3f9      	bcc.n	8000912 <CopyDataInit>
 
 /* Zero fill the bss segment. */
   ldr r2, =_sbss
- 80004a2:	4a0a      	ldr	r2, [pc, #40]	; (80004cc <LoopForever+0x12>)
+ 800091e:	4a0a      	ldr	r2, [pc, #40]	; (8000948 <LoopForever+0x12>)
   ldr r4, =_ebss
- 80004a4:	4c0a      	ldr	r4, [pc, #40]	; (80004d0 <LoopForever+0x16>)
+ 8000920:	4c0a      	ldr	r4, [pc, #40]	; (800094c <LoopForever+0x16>)
   movs r3, #0
- 80004a6:	2300      	movs	r3, #0
+ 8000922:	2300      	movs	r3, #0
   b LoopFillZerobss
- 80004a8:	e001      	b.n	80004ae <LoopFillZerobss>
+ 8000924:	e001      	b.n	800092a <LoopFillZerobss>
 
-080004aa <FillZerobss>:
+08000926 <FillZerobss>:
 
 FillZerobss:
   str  r3, [r2]
- 80004aa:	6013      	str	r3, [r2, #0]
+ 8000926:	6013      	str	r3, [r2, #0]
   adds r2, r2, #4
- 80004ac:	3204      	adds	r2, #4
+ 8000928:	3204      	adds	r2, #4
 
-080004ae <LoopFillZerobss>:
+0800092a <LoopFillZerobss>:
 
 LoopFillZerobss:
   cmp r2, r4
- 80004ae:	42a2      	cmp	r2, r4
+ 800092a:	42a2      	cmp	r2, r4
   bcc FillZerobss
- 80004b0:	d3fb      	bcc.n	80004aa <FillZerobss>
+ 800092c:	d3fb      	bcc.n	8000926 <FillZerobss>
 
 /* Call static constructors */
   bl __libc_init_array
- 80004b2:	f000 f811 	bl	80004d8 <__libc_init_array>
+ 800092e:	f000 f811 	bl	8000954 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 80004b6:	f7ff ffc3 	bl	8000440 <main>
+ 8000932:	f7ff ffab 	bl	800088c <main>
 
-080004ba <LoopForever>:
+08000936 <LoopForever>:
 
 LoopForever:
   b LoopForever
- 80004ba:	e7fe      	b.n	80004ba <LoopForever>
+ 8000936:	e7fe      	b.n	8000936 <LoopForever>
   ldr   r0, =_estack
- 80004bc:	20020000 	.word	0x20020000
+ 8000938:	20020000 	.word	0x20020000
   ldr r0, =_sdata
- 80004c0:	20000000 	.word	0x20000000
+ 800093c:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 80004c4:	20000000 	.word	0x20000000
+ 8000940:	20000000 	.word	0x20000000
   ldr r2, =_sidata
- 80004c8:	08000540 	.word	0x08000540
+ 8000944:	080009bc 	.word	0x080009bc
   ldr r2, =_sbss
- 80004cc:	20000000 	.word	0x20000000
+ 8000948:	20000000 	.word	0x20000000
   ldr r4, =_ebss
- 80004d0:	2000001c 	.word	0x2000001c
+ 800094c:	200000a8 	.word	0x200000a8
 
-080004d4 <ADC_IRQHandler>:
+08000950 <ADC_IRQHandler>:
  * @retval : None
 */
   .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 Infinite_Loop:
   b Infinite_Loop
- 80004d4:	e7fe      	b.n	80004d4 <ADC_IRQHandler>
+ 8000950:	e7fe      	b.n	8000950 <ADC_IRQHandler>
 	...
 
-080004d8 <__libc_init_array>:
- 80004d8:	b570      	push	{r4, r5, r6, lr}
- 80004da:	4d0d      	ldr	r5, [pc, #52]	; (8000510 <__libc_init_array+0x38>)
- 80004dc:	4c0d      	ldr	r4, [pc, #52]	; (8000514 <__libc_init_array+0x3c>)
- 80004de:	1b64      	subs	r4, r4, r5
- 80004e0:	10a4      	asrs	r4, r4, #2
- 80004e2:	2600      	movs	r6, #0
- 80004e4:	42a6      	cmp	r6, r4
- 80004e6:	d109      	bne.n	80004fc <__libc_init_array+0x24>
- 80004e8:	4d0b      	ldr	r5, [pc, #44]	; (8000518 <__libc_init_array+0x40>)
- 80004ea:	4c0c      	ldr	r4, [pc, #48]	; (800051c <__libc_init_array+0x44>)
- 80004ec:	f000 f818 	bl	8000520 <_init>
- 80004f0:	1b64      	subs	r4, r4, r5
- 80004f2:	10a4      	asrs	r4, r4, #2
- 80004f4:	2600      	movs	r6, #0
- 80004f6:	42a6      	cmp	r6, r4
- 80004f8:	d105      	bne.n	8000506 <__libc_init_array+0x2e>
- 80004fa:	bd70      	pop	{r4, r5, r6, pc}
- 80004fc:	f855 3b04 	ldr.w	r3, [r5], #4
- 8000500:	4798      	blx	r3
- 8000502:	3601      	adds	r6, #1
- 8000504:	e7ee      	b.n	80004e4 <__libc_init_array+0xc>
- 8000506:	f855 3b04 	ldr.w	r3, [r5], #4
- 800050a:	4798      	blx	r3
- 800050c:	3601      	adds	r6, #1
- 800050e:	e7f2      	b.n	80004f6 <__libc_init_array+0x1e>
- 8000510:	08000538 	.word	0x08000538
- 8000514:	08000538 	.word	0x08000538
- 8000518:	08000538 	.word	0x08000538
- 800051c:	0800053c 	.word	0x0800053c
+08000954 <__libc_init_array>:
+ 8000954:	b570      	push	{r4, r5, r6, lr}
+ 8000956:	4d0d      	ldr	r5, [pc, #52]	; (800098c <__libc_init_array+0x38>)
+ 8000958:	4c0d      	ldr	r4, [pc, #52]	; (8000990 <__libc_init_array+0x3c>)
+ 800095a:	1b64      	subs	r4, r4, r5
+ 800095c:	10a4      	asrs	r4, r4, #2
+ 800095e:	2600      	movs	r6, #0
+ 8000960:	42a6      	cmp	r6, r4
+ 8000962:	d109      	bne.n	8000978 <__libc_init_array+0x24>
+ 8000964:	4d0b      	ldr	r5, [pc, #44]	; (8000994 <__libc_init_array+0x40>)
+ 8000966:	4c0c      	ldr	r4, [pc, #48]	; (8000998 <__libc_init_array+0x44>)
+ 8000968:	f000 f818 	bl	800099c <_init>
+ 800096c:	1b64      	subs	r4, r4, r5
+ 800096e:	10a4      	asrs	r4, r4, #2
+ 8000970:	2600      	movs	r6, #0
+ 8000972:	42a6      	cmp	r6, r4
+ 8000974:	d105      	bne.n	8000982 <__libc_init_array+0x2e>
+ 8000976:	bd70      	pop	{r4, r5, r6, pc}
+ 8000978:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800097c:	4798      	blx	r3
+ 800097e:	3601      	adds	r6, #1
+ 8000980:	e7ee      	b.n	8000960 <__libc_init_array+0xc>
+ 8000982:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000986:	4798      	blx	r3
+ 8000988:	3601      	adds	r6, #1
+ 800098a:	e7f2      	b.n	8000972 <__libc_init_array+0x1e>
+ 800098c:	080009b4 	.word	0x080009b4
+ 8000990:	080009b4 	.word	0x080009b4
+ 8000994:	080009b4 	.word	0x080009b4
+ 8000998:	080009b8 	.word	0x080009b8
 
-08000520 <_init>:
- 8000520:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000522:	bf00      	nop
- 8000524:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000526:	bc08      	pop	{r3}
- 8000528:	469e      	mov	lr, r3
- 800052a:	4770      	bx	lr
+0800099c <_init>:
+ 800099c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800099e:	bf00      	nop
+ 80009a0:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80009a2:	bc08      	pop	{r3}
+ 80009a4:	469e      	mov	lr, r3
+ 80009a6:	4770      	bx	lr
 
-0800052c <_fini>:
- 800052c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800052e:	bf00      	nop
- 8000530:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000532:	bc08      	pop	{r3}
- 8000534:	469e      	mov	lr, r3
- 8000536:	4770      	bx	lr
+080009a8 <_fini>:
+ 80009a8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80009aa:	bf00      	nop
+ 80009ac:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80009ae:	bc08      	pop	{r3}
+ 80009b0:	469e      	mov	lr, r3
+ 80009b2:	4770      	bx	lr

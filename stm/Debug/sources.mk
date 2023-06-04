@@ -21,6 +21,9 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Drivers/Third_Party/FreeRTOS \
+Drivers/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F \
+Drivers/Third_Party/FreeRTOS/portable/MemMang \
 Src/common \
 Src \
 Startup \

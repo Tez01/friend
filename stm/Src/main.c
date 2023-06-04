@@ -17,11 +17,12 @@
 
 // Function template
 void a(void){
-/*	Input		:	(nothing)
- * 	Output		:
- * 	Description	:
- *
- */
+//=============================================================================
+//	Input		:	(nothing)
+//	Output		:
+//	Description	:
+//
+//=============================================================================
 
 }
 
@@ -35,8 +36,9 @@ void a(void){
 /******************************************************************************
 * Macros
 *******************************************************************************/
-
-
+#define NVIC_PRIORITYGROUP_4         0x00000003U /*!< 4 bits for pre-emption priority
+                                                      0 bits for subpriority */
+#define  TICK_INT_PRIORITY            0U   /*!< tick interrupt priority */
 /******************************************************************************
 * Type definitions (enums, structs, typedefs)
 *******************************************************************************/
@@ -85,11 +87,18 @@ int  main(void){
 
 
 void a_init(void){
-/*	Input		:	(nothing)
-* 	Output		:	All peripherals initialized
-* 	Description	:
-*		Initializes the application variables and all peripherals used
-*/
+//=============================================================================
+//	Input		:	(nothing)
+//	Output		:	All peripherals initialized
+//	Description	:
+//		Initializes the application variables and all peripherals used
+//=============================================================================
+
+	// Set NVIC priority for freertos. This setting was recommended in Fastbit course
+	NVIC_SetPriorityGrouping((uint32_t)NVIC_PRIORITYGROUP_4);
+
+
+	SysTick_Config(TicksNumb);
 
 	d_uart_init(USART2);
 

@@ -34,7 +34,7 @@ C_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/Third_Party/FreeRTOS/%.o Drivers/Third_Party/FreeRTOS/%.su: ../Drivers/Third_Party/FreeRTOS/%.c Drivers/Third_Party/FreeRTOS/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F411RE -DSTM32 -DSTM32F4 -DSTM32F411RETx -c -I"/home/tej/programming_projects/friend/stm/Drivers/CMSIS/ARM" -I"/home/tej/programming_projects/friend/stm/Drivers/CMSIS/ST" -I"/home/tej/programming_projects/friend/stm/Src/common" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F411RE -DSTM32 -DSTM32F4 -DSTM32F411RETx -c -I"/home/tej/programming_projects/friend/stm/Drivers/CMSIS/ARM" -I"/home/tej/programming_projects/friend/stm/Drivers/Third_Party/FreeRTOS" -I"/home/tej/programming_projects/friend/stm/Drivers/Third_Party/FreeRTOS/include" -I"/home/tej/programming_projects/friend/stm/Drivers/Third_Party/FreeRTOS/portable/GCC/ARM_CM4F" -I"/home/tej/programming_projects/friend/stm/Drivers/CMSIS/ST" -I"/home/tej/programming_projects/friend/stm/Src/common" -I"/home/tej/programming_projects/friend/stm/Src" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Drivers-2f-Third_Party-2f-FreeRTOS
 
