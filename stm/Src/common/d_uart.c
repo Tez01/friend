@@ -106,15 +106,15 @@
 * Function Definitions
 *******************************************************************************/
 void d_uart_init(USART_TypeDef *usart){
-/*	Input
- * 		usart	:	pointer to the usart that need to be initialized
- * 	Output
- * 		usart initialized and gpio pins configured as required for usart operation
- * 	Description	:
- * 		Initialize usart driver for full duplex communication
- * 		Configures related gpios for usart communication
- *		Initializes usart parameters for full duplex communication
- */
+//=============================================================================
+//	Input:
+//  	usart	:	pointer to the usart that need to be initialized
+//  Output:
+//  	usart initialized and gpio pins configured as required for usart operation
+//  Description	:
+//  	Initialize usart driver for full duplex communication
+//  	Configures related gpios for usart communication
+//=============================================================================
 
 	// GPIO configuration
 	if(usart == USART1){

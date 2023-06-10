@@ -1,4 +1,4 @@
 ../Src/main.c:19:6:a	4	static
-/home/tej/programming_projects/friend/stm/Drivers/CMSIS/ARM/core_cm4.h:1657:22:__NVIC_SetPriorityGrouping	24	static
-../Src/main.c:58:6:main	16	static
-../Src/main.c:89:6:a_init	8	static
+../Src/main.c:61:6:main	16	static
+../Src/main.c:92:6:a_init	8	static
+../Src/main.c:117:6:sys_clock_config	4	static
