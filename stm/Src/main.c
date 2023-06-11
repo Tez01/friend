@@ -126,7 +126,7 @@ void sys_clock_config(void){
 //=============================================================================
 
 	#define	PLL_N	100
-
+	#define PLL_M	4
 	// enable HSE and wait for it to become ready
 	RCC->CR |= RCC_CR_HSEON;
 	while(!(RCC->CR & RCC_CR_HSERDY));
@@ -154,7 +154,12 @@ void sys_clock_config(void){
 
 
 	// Configure the PLL Prescalers and PLL source
-	RCC->PLLCFGR |= RCC_PLLCFGR_PLLM_2 | (PLL_N << 6) | RCC_PLLCFGR_PLLSRC_HSE;
+
+		// I noticed that reset value for PLLM is 0x10
+		// So First clear first 6 bits for setting PLLM properly.
+		// TODO: Check reset values for others (PLLQ,N etc.) as well
+	RCC->PLLCFGR &= ~0x0001FFFF;
+	RCC->PLLCFGR |= (PLL_M << 0) | (PLL_N << 6) | RCC_PLLCFGR_PLLSRC_HSE;
 	// PLLP set to 2(See datasheet)
 	RCC->PLLCFGR &= ~RCC_PLLCFGR_PLLP_Msk;
 
@@ -165,6 +170,9 @@ void sys_clock_config(void){
 	// Set the clock source and wait for it to be set
 	RCC->CFGR |= RCC_CFGR_SW_PLL;
 	while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+
+
+	SystemCoreClockUpdate();
 
 }
 

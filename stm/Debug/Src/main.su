@@ -1,4 +1,4 @@
 ../Src/main.c:19:6:a	4	static
 ../Src/main.c:61:6:main	16	static
 ../Src/main.c:92:6:a_init	8	static
-../Src/main.c:117:6:sys_clock_config	4	static
+../Src/main.c:117:6:sys_clock_config	8	static
