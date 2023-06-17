@@ -47,3 +47,6 @@
 
 #STM Debug information
 */Debug/*
+
+#Segger Records
+*/segger_records/*

@@ -44,6 +44,10 @@ void a(void){
 #define  TICK_INT_PRIORITY            0U   /*!< tick interrupt priority */
 
 #define HAL_TICK_FREQ_1KHZ      1U
+
+// Segger
+#define DWT_CTRL	(*(volatile uint32_t *)0xE0001000)
+
 /******************************************************************************
 * Type definitions (enums, structs, typedefs)
 *******************************************************************************/
@@ -84,8 +88,8 @@ int  main(void){
 	status = xTaskCreate(task1_handler,  "Task-1", 200, "Hello World fom task-1", 2, &task1_handle);
 	configASSERT(status == pdPASS);
 
-	status = xTaskCreate(task2_handler,  "Task-2", 200, "Hello World fom task-2", 2, &task2_handle);
-	configASSERT(status == pdPASS);
+//	status = xTaskCreate(task2_handler,  "Task-2", 200, "Hello World fom task-2", 2, &task2_handle);
+//	configASSERT(status == pdPASS);
 	// create tasks for processing different commands
 
 	// Start the scheduler
@@ -123,6 +127,18 @@ void a_init(void){
 	// Initialize usart driver for full duplex communication
 	d_uart_init(USART2);
 
+	//****Segger****//
+	// Enable ARM DWT_CNT register for timestamps of Segger
+	DWT_CTRL |= (1<<0);
+
+
+	vInitPrioGroupValue();	// This is normally done by StartScheduler, but it
+							//	is required by SEGGER_SYSVIEW_Start, so do it
+							//	 here.
+
+	//Start recording
+	SEGGER_SYSVIEW_Conf();
+	SEGGER_SYSVIEW_Start();
 }
 
 
