@@ -29,10 +29,13 @@ void a(void){
 /******************************************************************************
 * Includes
 *******************************************************************************/
+#include <stdio.h>
 #include "stm32f411xe.h"
 
 #include "d_uart.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
 /******************************************************************************
 * Macros
 *******************************************************************************/
@@ -54,7 +57,10 @@ void a(void){
 * Function Prototypes
 *******************************************************************************/
 void a_init(void);	// Initializes the application variables and all peripherals used
+
 void sys_clock_config(void); //	Configures the System clock and sets the peripheral clock prescalers
+static void task1_handler(void *parameters);
+static void task2_handler(void *parameters);
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
@@ -62,6 +68,10 @@ int  main(void){
 	// Initialize everything in the application
 	a_init();
 
+	TaskHandle_t task1_handle;
+	TaskHandle_t task2_handle;
+
+	BaseType_t status;
 	// Queue to handle receiving of data. Data is pushed into this
 	// queue by Rx interrupt handler. As soon data is available in
 	// this queue, the state of data processing task becomes active.
@@ -71,10 +81,15 @@ int  main(void){
 	// queue by Data processing task task which triggers Tx interrupt.
 
 	// create a task for processing data in the queue
+	status = xTaskCreate(task1_handler,  "Task-1", 200, "Hello World fom task-1", 2, &task1_handle);
+	configASSERT(status == pdPASS);
 
+	status = xTaskCreate(task2_handler,  "Task-2", 200, "Hello World fom task-2", 2, &task2_handle);
+	configASSERT(status == pdPASS);
 	// create tasks for processing different commands
 
 	// Start the scheduler
+	vTaskStartScheduler();
 
 	uint32_t count = 49;
 	while(1){
@@ -96,19 +111,17 @@ void a_init(void){
 //	Description	:
 //		Initializes the application variables and all peripherals used
 //=============================================================================
+	// Configures the System clock and set prescalers for peripheral clock
+	sys_clock_config();
 
-//	// Set NVIC priority for freertos. This setting was recommended in Fastbit course
-//	NVIC_SetPriorityGrouping((uint32_t)NVIC_PRIORITYGROUP_4);
-//
-//
-//	 /* Configure the SysTick to have interrupt in 1ms time basis*/
-//	SysTick_Config(SystemCoreClock / (1000U / HAL_TICK_FREQ_1KHZ));
-//
+	// Set NVIC priority for freertos. This setting was recommended in Fastbit course
+	NVIC_SetPriorityGrouping((uint32_t)NVIC_PRIORITYGROUP_4);
+	 /* Configure the SysTick to have interrupt in 1ms time basis*/
+	SysTick_Config(SystemCoreClock / (1000U / HAL_TICK_FREQ_1KHZ));
+
+
 	// Initialize usart driver for full duplex communication
 	d_uart_init(USART2);
-
-	// Configures the System clock and sets the peripheral clock prescalers
-	sys_clock_config();
 
 }
 
@@ -119,14 +132,15 @@ void sys_clock_config(void){
 //	Input		:	(nothing)
 //	Output		:	STM32 Clock set
 //	Description	:
+//		Aim is to get a system clock of 100MHz.
 //		Configures the System clock and sets the peripheral clock prescalers
 //		Reference:
 //		Intro to STM32F4 Register Based Programming || Clock Setup || LED Blinking || NO HAL
 //		https://www.youtube.com/watch?v=GJ_LFAlOlSk&t=834s
 //=============================================================================
 
-	#define	PLL_N	100
-	#define PLL_M	4
+	#define	PLL_N	100	//	(Matched with Cube MX clock configuration to get 100MHz System Clock)
+	#define PLL_M	4	//	(Matched with Cube MX clock configuration to get 100MHz System Clock)
 	// enable HSE and wait for it to become ready
 	RCC->CR |= RCC_CR_HSEON;
 	while(!(RCC->CR & RCC_CR_HSERDY));
@@ -155,9 +169,8 @@ void sys_clock_config(void){
 
 	// Configure the PLL Prescalers and PLL source
 
-		// I noticed that reset value for PLLM is 0x10
-		// So First clear first 6 bits for setting PLLM properly.
-		// TODO: Check reset values for others (PLLQ,N etc.) as well
+		// I noticed that reset value for PLLCFGR has some bits set to 1
+		// So First clear first 17 bits for PPLN,PLLM,PLLP
 	RCC->PLLCFGR &= ~0x0001FFFF;
 	RCC->PLLCFGR |= (PLL_M << 0) | (PLL_N << 6) | RCC_PLLCFGR_PLLSRC_HSE;
 	// PLLP set to 2(See datasheet)
@@ -176,5 +189,17 @@ void sys_clock_config(void){
 
 }
 
+static void task1_handler(void *parameters){
+	while(1)
+	{
+		printf("%s\n", (char *)parameters);
+	}
+}
 
+static void task2_handler(void *parameters){
+	while(1)
+	{
+		printf("%s\n", (char *)parameters);
+	}
+}
 /*************** END OF FUNCTIONS ***************************************************************************/
