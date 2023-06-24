@@ -88,8 +88,8 @@ int  main(void){
 	status = xTaskCreate(task1_handler,  "Task-1", 200, "Hello World fom task-1", 2, &task1_handle);
 	configASSERT(status == pdPASS);
 
-//	status = xTaskCreate(task2_handler,  "Task-2", 200, "Hello World fom task-2", 2, &task2_handle);
-//	configASSERT(status == pdPASS);
+	status = xTaskCreate(task2_handler,  "Task-2", 200, "Hello World fom task-2", 2, &task2_handle);
+	configASSERT(status == pdPASS);
 	// create tasks for processing different commands
 
 	// Start the scheduler

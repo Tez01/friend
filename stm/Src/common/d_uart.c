@@ -172,19 +172,34 @@ void d_uart_init(USART_TypeDef *usart){
 	//	 Select the desired baud rate using the USART_BRR register.
 	usart->BRR |= BRR_USARTDIV;
 
+	//****Transmit****
 	//	Set the TE bit in USART_CR1 to send an idle frame as first transmission.
-	usart->CR1 |= CR1_TE;
 	//	When TE is set, there is a 1 bit-time delay before the transmission starts
+	usart->CR1 |= CR1_TE;
+
+
+	//****Receive****
+	//	Set the RE bit USART_CR1. This enables the receiver which begins searching for a
+	//	start bit.
+	usart->CR1 |= USART_CR1_RE;
+
+	// Enable interrupts when Read data register not empty
+	// This interrupt is triggered when the content of the RDR shift register has been transferred
+	// to the USART_DR register
+	usart->CR1 |= USART_CR1_RXNEIE;
+
+	NVIC_EnableIRQ(USART2_IRQn);
 
 }
 
 void USART1_GPIO_Init(void){
-/*	Input		:	(nothing)
- * 	Output		:	Sets the gpio pins connected to USART1
- * 	Description	:	Sets the gpio pins connected to USART1 for USART operation
- * 					PA9 	-> 	USART1_TX
- * 					PA10	->	USART1_RX
- */
+//=============================================================================
+//	Input		:	(nothing)
+//	Output		:	Sets the gpio pins connected to USART1
+//	Description	:	Sets the gpio pins connected to USART1 for USART operation
+//					PA9 	-> 	USART1_TX
+//					PA10	->	USART1_RX
+//=============================================================================
 
 	USART1_GPIO_TX_Init();
 

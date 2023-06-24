@@ -101,6 +101,18 @@
 #define tskDELETED_CHAR      ( 'D' )
 #define tskSUSPENDED_CHAR    ( 'S' )
 
+// Added to remove the warning after applying Segger patch
+// to FreeRTOS. The Segger patch that was downloaded from Udemy FreeRTOS
+// course seems to be incompatible with newer versions of FreeRTOS.
+// So had to do this manual fix to remove the warning -
+// (implicit declaration of function 'prvReaddTaskToReadyList';
+//	did you mean 'prvAddTaskToReadyList'?)
+
+#define prvReaddTaskToReadyList( pxTCB )															\
+	traceREADDED_TASK_TO_READY_STATE( pxTCB );														\
+	taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority );												\
+	vListInsertEnd( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ), &( ( pxTCB )->xStateListItem ) ); \
+	tracePOST_MOVED_TASK_TO_READY_STATE( pxTCB )
 /*
  * Some kernel aware debuggers require the data the debugger needs access to to
  * be global, rather than file scope.
