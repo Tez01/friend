@@ -15,17 +15,6 @@
 *	-	Display currently running command number on LCD.
 */
 
-// Function template
-void a(void){
-//=============================================================================
-//	Input		:	(nothing)
-//	Output		:
-//	Description	:
-//
-//=============================================================================
-
-}
-
 /******************************************************************************
 * Includes
 *******************************************************************************/
@@ -36,6 +25,8 @@ void a(void){
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
+#include "portmacro.h"
 /******************************************************************************
 * Macros
 *******************************************************************************/
@@ -48,6 +39,9 @@ void a(void){
 // Segger
 #define DWT_CTRL	(*(volatile uint32_t *)0xE0001000)
 
+
+// Tx/ Rx queues
+#define MAX_CHARS_RX_QUEUE	(UBaseType_t)1000  // Max characters than Rx queue can hold
 /******************************************************************************
 * Type definitions (enums, structs, typedefs)
 *******************************************************************************/
@@ -55,7 +49,7 @@ void a(void){
 /******************************************************************************
 * Global Variables
 *******************************************************************************/
-
+QueueHandle_t rx_queue;
 
 /******************************************************************************
 * Function Prototypes
@@ -64,7 +58,6 @@ void a_init(void);	// Initializes the application variables and all peripherals 
 
 void sys_clock_config(void); //	Configures the System clock and sets the peripheral clock prescalers
 static void task1_handler(void *parameters);
-static void task2_handler(void *parameters);
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
@@ -73,13 +66,14 @@ int  main(void){
 	a_init();
 
 	TaskHandle_t task1_handle;
-	TaskHandle_t task2_handle;
 
 	BaseType_t status;
 	// Queue to handle receiving of data. Data is pushed into this
 	// queue by Rx interrupt handler. As soon data is available in
-	// this queue, the state of data processing task becomes active.
-
+	// this queue, the data processing task is notified which
+	//	moves this task to active state.
+	rx_queue = xQueueCreate(MAX_CHARS_RX_QUEUE, sizeof(char));
+	configASSERT(rx_queue != NULL);
 
 	// Queue to handle transmit of data. Data is pushed into this
 	// queue by Data processing task task which triggers Tx interrupt.
@@ -88,20 +82,14 @@ int  main(void){
 	status = xTaskCreate(task1_handler,  "Task-1", 200, "Hello World fom task-1", 2, &task1_handle);
 	configASSERT(status == pdPASS);
 
-	status = xTaskCreate(task2_handler,  "Task-2", 200, "Hello World fom task-2", 2, &task2_handle);
-	configASSERT(status == pdPASS);
+
 	// create tasks for processing different commands
 
 	// Start the scheduler
 	vTaskStartScheduler();
 
-	uint32_t count = 49;
+
 	while(1){
-		// Code should never come here with FreeRTOS
-		USART2->DR = count;
-		for(int i = 0; i < 3000; i++){
-			;
-		}
 
 	}
 
@@ -115,28 +103,36 @@ void a_init(void){
 //	Description	:
 //		Initializes the application variables and all peripherals used
 //=============================================================================
+
+	// Initialize all global variables in this file
+	rx_queue = NULL;
+
+
 	// Configures the System clock and set prescalers for peripheral clock
 	sys_clock_config();
 
+	//==============================
+	// FreeRTOS related Setup
+	//==============================
 	// Set NVIC priority for freertos. This setting was recommended in Fastbit course
 	NVIC_SetPriorityGrouping((uint32_t)NVIC_PRIORITYGROUP_4);
-	 /* Configure the SysTick to have interrupt in 1ms time basis*/
+	// Configure the SysTick to have interrupt in 1ms time basis
 	SysTick_Config(SystemCoreClock / (1000U / HAL_TICK_FREQ_1KHZ));
 
 
-	// Initialize usart driver for full duplex communication
-	d_uart_init(USART2);
+	// Initialize full duplex communication over uart2
+	f_full_duplex_comm_uart2_init();
 
-	//****Segger****//
+
+	//==============================
+	// Segger Related Setup
+	//==============================
 	// Enable ARM DWT_CNT register for timestamps of Segger
 	DWT_CTRL |= (1<<0);
-
-
 	vInitPrioGroupValue();	// This is normally done by StartScheduler, but it
 							//	is required by SEGGER_SYSVIEW_Start, so do it
 							//	 here.
-
-	//Start recording
+	// Start recording
 	SEGGER_SYSVIEW_Conf();
 	SEGGER_SYSVIEW_Start();
 }
@@ -206,22 +202,15 @@ void sys_clock_config(void){
 }
 
 static void task1_handler(void *parameters){
-	char msg[100];
+	uint32_t count = 49;
 	while(1)
 	{
-		snprintf(msg, 100, "%s\n", (char *)parameters);
+		// Code should never come here with FreeRTOS
+		USART2->DR = count;
 
-		SEGGER_SYSVIEW_PrintfTarget(msg);
+
 	}
 }
 
-static void task2_handler(void *parameters){
-	char msg[100];
-		while(1)
-		{
-			snprintf(msg, 100, "%s\n", (char *)parameters);
 
-			SEGGER_SYSVIEW_PrintfTarget(msg);
-		}
-}
 /*************** END OF FUNCTIONS ***************************************************************************/
