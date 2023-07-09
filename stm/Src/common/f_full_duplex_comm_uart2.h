@@ -9,6 +9,8 @@
 * 		functions and macros used to send and receive data over uart.
 * 	Works on top of d_uart
 *
+*/
+
 /******************************************************************************
 * Includes
 *******************************************************************************/
@@ -32,13 +34,11 @@
 /******************************************************************************
 * Function Prototypes
 *******************************************************************************/
+void f_comm_init(void);
 
-/******************************************************************************
-* Function Definitions
-*******************************************************************************/
-#ifndef COMMON_F_UART_H_
-#define COMMON_F_UART_H_
+#ifndef COMMON_F_FULL_DUPLEX_COMM_UART2_H_
+#define COMMON_F_FULL_DUPLEX_COMM_UART2_H_
 
 
 
-#endif /* COMMON_F_UART_H_ */
+#endif /* COMMON_F_FULL_DUPLEX_COMM_UART2_H_ */

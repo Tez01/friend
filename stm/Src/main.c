@@ -27,6 +27,7 @@
 #include "task.h"
 #include "queue.h"
 #include "portmacro.h"
+#include "f_full_duplex_comm_uart2.h"
 /******************************************************************************
 * Macros
 *******************************************************************************/
@@ -121,8 +122,7 @@ void a_init(void){
 
 
 	// Initialize full duplex communication over uart2
-	f_full_duplex_comm_uart2_init();
-
+	f_comm_init();
 
 	//==============================
 	// Segger Related Setup
@@ -132,7 +132,8 @@ void a_init(void){
 	vInitPrioGroupValue();	// This is normally done by StartScheduler, but it
 							//	is required by SEGGER_SYSVIEW_Start, so do it
 							//	 here.
-	// Start recording
+
+	//Start recording
 	SEGGER_SYSVIEW_Conf();
 	SEGGER_SYSVIEW_Start();
 }

@@ -149,6 +149,7 @@ void USART2_IRQHandler(void){
 //
 //=============================================================================
 
+	SEGGER_SYSVIEW_PrintfTarget("Hello");
 
 }
 

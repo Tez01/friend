@@ -5,13 +5,25 @@
 * Version               :   1.0.0
 *
 * Description:
-* 	This file contains definition of functions to send and receive data over uart.
+* 	This file contains definition of functions for full duplex communication over
+* 	UART2
 * 	Works on top of d_uart
+*	Note:
+*		1.	This file is specific for communication over UART2.
+*			The vision is to do communication with PC over USB connection
+*			with the PC and it is assumed that for most STM32 boards
+*			the USB is connected to PC via UART2. So designing the file
+*			for UART2 for now. If there is a need to have communication over
+*			other UART, will modify this file to make it generic.
 *
+*		2.	In this file, full_duplex_comm_uart2  = comm
+*
+*/
+
 /******************************************************************************
 * Includes
 *******************************************************************************/
-#include d_uart.h
+#include "d_uart.h"
 /******************************************************************************
 * Macros
 *******************************************************************************/
@@ -35,7 +47,7 @@
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
-void f_uart_init(USART_TypeDef *usart){
+void f_comm_init(void){
 //=============================================================================
 //	Input		:	(nothing)
 //	Output		:	Initialize uart hardware
@@ -43,12 +55,10 @@ void f_uart_init(USART_TypeDef *usart){
 //		Initialize the uart hardware
 //		Initialize global variables in this file
 //=============================================================================
-	d_uart_init(usart)
+	//Initialize uart2 hardware
+	d_uart_init(USART2);
 
 
 }
 
-
-
-#endif /* COMMON_F_UART_H_ */
 
